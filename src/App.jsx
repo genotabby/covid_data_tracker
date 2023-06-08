@@ -4,7 +4,7 @@ import Nav from "./components/Nav";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "water.css/out/water.min.css";
 import "./styles/App.css";
-import "./styles/Error404.css";
+// import "./styles/Error404.css";
 import Home from "./components/Home";
 import About from "./components/About";
 import Comparator from "./components/Comparator";
