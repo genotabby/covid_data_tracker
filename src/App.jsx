@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Nav from "./components/Nav";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "water.css/out/water.min.css";
+import "./styles/App.css";
+import "./styles/Error404.css";
+import Home from "./components/Home";
+import About from "./components/About";
+import Comparator from "./components/Comparator";
+import Error404 from "./components/Error404";
+import ContactMe from "./components/ContactMe";
 //* async -> keyword -> just a function marker -> allows use of await
 
 function App() {
   const [result, setResult] = useState({});
   const [categories, setCategories] = useState([]);
 
-  // const handleSearch = () => {
-  //   async function fetchData() {
-  //     const response = await fetch(`https://coronavirus.m.pipedream.net/`);
-  //     const jsonData = await response.json();
-  //     setResult(jsonData);
-  //   }
-
-  //   fetchData();
-  // };
-
   useEffect(() => {
     async function getCategories() {
-      // const response = await fetch(`https://coronavirus.m.pipedream.net/`);
+      const response = await fetch(`https://coronavirus.m.pipedream.net/`);
       const jsonData = await response.json();
       setCategories(jsonData);
     }
@@ -31,7 +30,7 @@ function App() {
   useEffect(() => {
     async function fetchPopulation() {
       const response = await fetch(
-        "https://api.api-ninjas.com/v1/country?name=Singapore",
+        // "https://api.api-ninjas.com/v1/country?name=Singapore",
         {
           method: "GET",
           headers: {
@@ -51,9 +50,17 @@ function App() {
 
   return (
     <>
-      <button>Test</button>
-      <h1>Covid Comparator</h1>
-      <p>{JSON.stringify(categories)}</p>
+      <Nav />
+      <button>Test button for style?</button>
+      <Routes>
+        <Route path="/" element={<Home props={categories} />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Comparator" element={<Comparator props={categories} />} />
+        <Route path="/ContactMe" element={<ContactMe />} />
+        {/* <Route path="/*" element={<p>Error 404</p>} /> */}
+        <Route path="/*" element={<Error404 />} />
+      </Routes>
+      {/* <p>{JSON.stringify(categories)}</p> */}
       {/* <label>
         Title: <input name="title" type="search" />
       </label>
@@ -61,7 +68,6 @@ function App() {
       <br /> */}
       {/* <img src={result.Poster} />
       <p>First Name: {result.results && result.results[0].name.first}</p> */}
-
       {/* Elvis method [optional chainring] */}
       {/* <p>First Name: {result}</p> */}
     </>
