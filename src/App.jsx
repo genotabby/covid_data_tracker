@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-
+// import "bootstrap/dist/css/bootstrap.min.css";
+import "water.css/out/water.min.css";
 //* async -> keyword -> just a function marker -> allows use of await
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
 
   useEffect(() => {
     async function getCategories() {
-      const response = await fetch(`https://coronavirus.m.pipedream.net/`);
+      // const response = await fetch(`https://coronavirus.m.pipedream.net/`);
       const jsonData = await response.json();
       setCategories(jsonData);
     }
@@ -34,7 +35,7 @@ function App() {
         {
           method: "GET",
           headers: {
-            "x-api-key": "rZg5Aw0LF8d5jCySPBPNWA==thmSddusqVTuLGxV",
+            // "x-api-key": "rZg5Aw0LF8d5jCySPBPNWA==thmSddusqVTuLGxV",
             "Content-Type": "application/json",
           },
           // body: JSON.stringify(data),
@@ -50,7 +51,8 @@ function App() {
 
   return (
     <>
-      <h1>Covid</h1>
+      <button>Test</button>
+      <h1>Covid Comparator</h1>
       <p>{JSON.stringify(categories)}</p>
       {/* <label>
         Title: <input name="title" type="search" />
