@@ -30,11 +30,11 @@ function App() {
   useEffect(() => {
     async function fetchPopulation() {
       const response = await fetch(
-        "https://api.api-ninjas.com/v1/country?name=Singapore",
+        // "https://api.api-ninjas.com/v1/country?name=Singapore",
         {
           method: "GET",
           headers: {
-            "x-api-key": "rZg5Aw0LF8d5jCySPBPNWA==thmSddusqVTuLGxV",
+            // "x-api-key": "rZg5Aw0LF8d5jCySPBPNWA==thmSddusqVTuLGxV",
             "Content-Type": "application/json",
           },
           // body: JSON.stringify(data),
