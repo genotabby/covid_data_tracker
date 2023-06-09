@@ -22,7 +22,6 @@ function App() {
   useEffect(() => {
     async function getCategories() {
       const response = await fetch(`https://coronavirus.m.pipedream.net/`);
-      // const response = await fetch(`https://disease.sh/v3/covid-19/countries/`);
       const jsonData = await response.json();
       setGlobalData(jsonData);
     }

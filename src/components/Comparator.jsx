@@ -6,16 +6,23 @@ export default function Comparator({ props }) {
     <>
       <h1>Covid Comparator</h1>
       <form>
-        <select>
+        {props.length === 0 ? (
+          "Data is loading..."
+        ) : (
+          <select>
+            {data.map((countryData, idx) => (
+              <option key={idx}>{countryData.country}</option>
+            ))}
+          </select>
+        )}
+        {/* <select>
           {data.map((countryData, idx) => (
-            <option key={idx}>
-              {countryData.country}
-              {/* {countryData.Province_State || countryData.Country_Region} */}
-            </option>
+            <option key={idx}>{countryData.country}</option>
           ))}
-        </select>
+        </select> */}
       </form>
       <button>Detailed info</button>
+      <button>Set as Favourite</button>
       <fieldset>
         <legend>Comparator</legend>
         <select>
