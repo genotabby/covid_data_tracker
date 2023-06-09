@@ -72,6 +72,8 @@ function App() {
         {/* <Route path="/*" element={<p>Error 404</p>} /> */}
         <Route path="/*" element={<Error404 />} />
       </Routes>
+
+      <p>TODOS: To insert top 10 cases here</p>
       {/* <p>{JSON.stringify(countryData)}</p> */}
       {/* <label>
         Title: <input name="title" type="search" />
