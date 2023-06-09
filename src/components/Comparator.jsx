@@ -21,7 +21,7 @@ export default function Comparator({ props }) {
             <option key={idx}>{countryData.country}</option>
           ))}
         </select> */}
-        <Link to={`country/0`}>
+        <Link to={`country/186`}>
           <button>Detailed info</button>
         </Link>
         <button>Set as Favourite</button>

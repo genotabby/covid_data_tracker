@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import addCommas from "../functions/addCommas";
 
 export default function CountryDetails({ props }) {
   const [countryList, setCountryList] = useState(props);
   const { id } = useParams();
   const idNum = parseInt(id);
+  const navigate = useNavigate();
 
+  const handleClick = () => {
+    console.log("Click");
+    navigate("/comparator");
+  };
   // let country;
   // for (let i = 0; i < countryList.length; i++) {
   //   if (countryList[i].id === idNum) {
@@ -21,6 +26,7 @@ export default function CountryDetails({ props }) {
       <button>
         <Link to="/Comparator">Return</Link>
       </button>
+      <button onClick={handleClick}>Backup return</button>
       <h1>ID: {id}</h1>
       <h2>
         Detail for {countryList[id]?.country},{" "}
@@ -38,6 +44,7 @@ export default function CountryDetails({ props }) {
       <button>
         <Link to="/Comparator">Return</Link>
       </button>
+      <button onClick={handleClick}>Backup return</button>
       <p>
         Details - {id} Component {JSON.stringify(countryList[id])}
       </p>
