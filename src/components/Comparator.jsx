@@ -6,15 +6,15 @@ export default function Comparator({ props }) {
     <>
       <h1>Covid Comparator</h1>
       <select>
-        {/* {data.rawData.map((countryData, idx) => (
+        {data.map((countryData, idx) => (
           <option key={idx}>
-            {countryData.Country_Region},{" "}
-            {countryData.Province_State || countryData.Country_Region}
+            {countryData.country}
+            {/* {countryData.Province_State || countryData.Country_Region} */}
           </option>
-        ))} */}
+        ))}
       </select>
-      {/* <p>Test:{JSON.stringify(data.rawData)}</p> */}
-      {/* <p>{JSON.stringify(props.rawData)}</p> */}
+      <button>Detailed info</button>
+      <p>Test:{JSON.stringify(data)}</p>
     </>
   );
 }

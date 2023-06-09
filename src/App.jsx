@@ -14,18 +14,29 @@ import ContactMe from "./components/ContactMe";
 
 function App() {
   const [result, setResult] = useState({});
-  const [categories, setCategories] = useState([]);
+  const [globalData, setGlobalData] = useState([]);
+  const [countryData, setCountryData] = useState([]);
+
+  const [population, setPopulation] = useState([]);
 
   useEffect(() => {
     async function getCategories() {
       const response = await fetch(`https://coronavirus.m.pipedream.net/`);
+      // const response = await fetch(`https://disease.sh/v3/covid-19/countries/`);
       const jsonData = await response.json();
-      setCategories(jsonData);
+      setGlobalData(jsonData);
     }
     getCategories();
   }, []);
 
-  const [population, setPopulation] = useState([]);
+  useEffect(() => {
+    async function getCountryData() {
+      const response = await fetch(`https://disease.sh/v3/covid-19/countries/`);
+      const jsonData = await response.json();
+      setCountryData(jsonData);
+    }
+    getCountryData();
+  }, []);
 
   useEffect(() => {
     async function fetchPopulation() {
@@ -53,14 +64,17 @@ function App() {
       <Nav />
       <button>Test button for style?</button>
       <Routes>
-        <Route path="/" element={<Home props={categories} />} />
+        <Route path="/" element={<Home props={globalData} />} />
         <Route path="/About" element={<About />} />
-        <Route path="/Comparator" element={<Comparator props={categories} />} />
+        <Route
+          path="/Comparator"
+          element={<Comparator props={countryData} />}
+        />
         <Route path="/ContactMe" element={<ContactMe />} />
         {/* <Route path="/*" element={<p>Error 404</p>} /> */}
         <Route path="/*" element={<Error404 />} />
       </Routes>
-      {/* <p>{JSON.stringify(categories)}</p> */}
+      {/* <p>{JSON.stringify(countryData)}</p> */}
       {/* <label>
         Title: <input name="title" type="search" />
       </label>
