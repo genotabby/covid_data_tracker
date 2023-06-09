@@ -9,13 +9,13 @@ export default function Nav() {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/Comparator">Comparator</NavLink>
+            <NavLink to="/comparator">Comparator</NavLink>
           </li>
           <li>
-            <NavLink to="/About">About</NavLink>
+            <NavLink to="/about">About</NavLink>
           </li>
           <li>
-            <NavLink to="/ContactMe">Contact Me</NavLink>
+            <NavLink to="/contactMe">Contact Me</NavLink>
           </li>
         </ul>
       </div>

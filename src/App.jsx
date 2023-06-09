@@ -10,6 +10,7 @@ import About from "./components/About";
 import Comparator from "./components/Comparator";
 import Error404 from "./components/Error404";
 import ContactMe from "./components/ContactMe";
+import CountryDetails from "./components/CountryDetails";
 //* async -> keyword -> just a function marker -> allows use of await
 
 function App() {
@@ -63,13 +64,16 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home props={globalData} />} />
-        <Route path="/About" element={<About />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/Comparator"
           element={<Comparator props={countryData} />}
         />
+        <Route
+          path="Comparator/country/:id"
+          element={<CountryDetails props={countryData} />}
+        />
         <Route path="/ContactMe" element={<ContactMe />} />
-        {/* <Route path="/*" element={<p>Error 404</p>} /> */}
         <Route path="/*" element={<Error404 />} />
       </Routes>
 

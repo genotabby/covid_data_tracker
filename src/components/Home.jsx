@@ -7,7 +7,7 @@ export default function Home({ props }) {
       <p>
         Global Confirmed Cases:{" "}
         {props.length === 0
-          ? "Data is loading..."
+          ? "The virus is hindering our systems, causing at some points an overwhelming delay"
           : addCommas(props?.summaryStats?.global?.confirmed)}
       </p>
       <p>

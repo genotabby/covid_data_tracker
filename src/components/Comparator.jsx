@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Comparator({ props }) {
   const [data, setData] = useState(props);
@@ -20,9 +21,11 @@ export default function Comparator({ props }) {
             <option key={idx}>{countryData.country}</option>
           ))}
         </select> */}
+        <Link to={`country/0`}>
+          <button>Detailed info</button>
+        </Link>
+        <button>Set as Favourite</button>
       </form>
-      <button>Detailed info</button>
-      <button>Set as Favourite</button>
       <fieldset>
         <legend>Comparator</legend>
         <select>
