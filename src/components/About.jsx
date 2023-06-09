@@ -3,9 +3,12 @@ export default function About() {
     <>
       <h1>About</h1>
       <div className="AboutDescription">
-        <p>Hello! This is my app to compare the number of covid cases. </p>
         <p>
-          As this dependant on an API, it is scalable as long as there is an
+          Hello! This is my app to compare the number of covid cases between
+          countries.{" "}
+        </p>
+        <p>
+          As this is dependant on an API, it is scalable as long as there is an
           available API! 😄
         </p>
       </div>
