@@ -62,7 +62,6 @@ function App() {
   return (
     <>
       <Nav />
-      <button>Test button for style?</button>
       <Routes>
         <Route path="/" element={<Home props={globalData} />} />
         <Route path="/About" element={<About />} />
