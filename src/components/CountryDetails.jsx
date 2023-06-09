@@ -30,7 +30,9 @@ export default function CountryDetails({ props }) {
       <p>Cases: {addCommas(countryList[id]?.cases)}</p>
       <p>Deaths: {addCommas(countryList[id]?.deaths)}</p>
       <p>Recovered: {addCommas(countryList[id]?.recovered)}</p>
-      <Link to="/">Return to Home</Link>
+      <button>
+        <Link to="/Comparator">Return</Link>
+      </button>
     </>
   );
 }
