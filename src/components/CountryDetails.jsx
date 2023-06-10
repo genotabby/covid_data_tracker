@@ -50,6 +50,10 @@ export default function CountryDetails({ props }) {
       <p>Recovered: {addCommas(countryList[id]?.recovered)}</p>
       <p>Cases per Million: {addCommas(countryList[id]?.casesPerOneMillion)}</p>
       <p>
+        Critical per Million:{" "}
+        {addCommas(countryList[id]?.criticalPerOneMillion)}
+      </p>
+      <p>
         Deaths per Million: {addCommas(countryList[id]?.deathsPerOneMillion)}
       </p>
       <p>

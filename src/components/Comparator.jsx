@@ -8,17 +8,18 @@ export default function Comparator({ props }) {
 
   const handleChange = (event) => {
     setCountryName(event.target.value);
+    console.log("handleChange", event.target.value);
   };
 
   const handleGetCountry = (event) => {
     event.preventDefault();
-    console.log("test", event.target.value);
+    console.log("handleGetCountry Value", event.target.value);
     console.log("test2", countryName);
     navigate(`/comparator/country/${countryName}`);
   };
   return (
     <>
-      <h1>Covid Comparator</h1>
+      <h1>Country</h1>
       <form onSubmit={handleGetCountry}>
         {props.length === 0 ? (
           "Data is loading..."
@@ -56,7 +57,7 @@ export default function Comparator({ props }) {
         </select>
         <button>Compare!</button>
       </fieldset>
-      <p>Test:{JSON.stringify(data)}</p>
+      {/* <p>Test:{JSON.stringify(data)}</p> */}
     </>
   );
 }
