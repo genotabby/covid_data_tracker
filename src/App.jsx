@@ -38,26 +38,26 @@ function App() {
     getCountryData();
   }, []);
 
-  useEffect(() => {
-    async function fetchPopulation() {
-      const response = await fetch(
-        // "https://api.api-ninjas.com/v1/country?name=Singapore",
-        {
-          method: "GET",
-          headers: {
-            // "x-api-key": "rZg5Aw0LF8d5jCySPBPNWA==thmSddusqVTuLGxV",
-            "Content-Type": "application/json",
-          },
-          // body: JSON.stringify(data),
-        }
-      );
-      const jsonData = await response.json();
-      setPopulation(jsonData);
-    }
-    fetchPopulation();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchPopulation() {
+  //     const response = await fetch(
+  //       "https://api.api-ninjas.com/v1/country?name=Singapore",
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "x-api-key": "rZg5Aw0LF8d5jCySPBPNWA==thmSddusqVTuLGxV",
+  //           "Content-Type": "application/json",
+  //         },
+  //         // body: JSON.stringify(data),
+  //       }
+  //     );
+  //     const jsonData = await response.json();
+  //     setPopulation(jsonData);
+  //   }
+  //   fetchPopulation();
+  // }, []);
 
-  console.log(population);
+  // console.log(population);
 
   return (
     <>
