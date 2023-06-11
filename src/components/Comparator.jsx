@@ -75,6 +75,8 @@ export default function Comparator({ props }) {
           <button>Compare!</button>
         </form>
       </fieldset>
+      <p>Country 1:{compareCountry1}</p>
+      <p>Country 2:{compareCountry2}</p>
       {/* <p>Test:{JSON.stringify(data)}</p> */}
     </>
   );
