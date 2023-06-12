@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import addCommas from "../functions/addCommas";
 
 export default function Home({ props }) {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    console.log("Click");
+    navigate("/comparator");
+  };
   return (
     <>
       <h1 className="Header">Global details</h1>
@@ -16,6 +22,7 @@ export default function Home({ props }) {
           ? "Data is loading..."
           : addCommas(props?.summaryStats?.global?.deaths)}
       </p>
+      <button onClick={handleClick}>view by country</button>
 
       {/* <p>Global Confirmed cases: {props?.summaryStats?.global?.confirmed}</p>
       <p>Global Deaths Deaths: {props?.summaryStats?.global?.deaths}</p> */}

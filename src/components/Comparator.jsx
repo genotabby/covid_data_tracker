@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Comparator({ props }) {
   const [data, setData] = useState(props);
@@ -35,6 +35,29 @@ export default function Comparator({ props }) {
   };
   return (
     <>
+      <nav>
+        <NavLink
+          to="/"
+          className={
+            location.pathname === "/"
+              ? "breadcrumb-active"
+              : "breadcrumb-not-active"
+          }
+        >
+          Home
+        </NavLink>
+        <span className="breadcrumb-arrow">&gt;</span>
+        <NavLink
+          to="/comparator"
+          className={
+            location.pathname.startsWith("/comparator")
+              ? "breadcrumb-active"
+              : "breadcrumb-not-active"
+          }
+        >
+          Comparator
+        </NavLink>
+      </nav>
       <h1>Country</h1>
       <form onSubmit={handleGetCountry}>
         {props.length === 0 ? (
@@ -75,10 +98,10 @@ export default function Comparator({ props }) {
           <button>Compare!</button>
         </form>
       </fieldset>
-      <p>Country 1: {data[compareCountryID1].country}</p>
-      <p>Country 1: {compareCountryID1}</p>
-      <p>Country 2: {data[compareCountryID2].country}</p>
-      <p>Country 2: {compareCountryID2}</p>
+      <p>Country 1: {data[compareCountryID1]?.country}</p>
+      <p>Country 1 ID: {compareCountryID1}</p>
+      <p>Country 2: {data[compareCountryID2]?.country}</p>
+      <p>Country 2 ID: {compareCountryID2}</p>
       <p>Test:{JSON.stringify(data)}</p>
     </>
   );

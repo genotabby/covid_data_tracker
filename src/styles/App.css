@@ -1,7 +1,8 @@
 header {
-  background-color: #333;
+  /* background-color: #333; */
   justify-content: flex-start;
   display: flex;
+  background-color: rgb(168, 215, 105);
 }
 
 header ul {
@@ -20,3 +21,7 @@ header a {
 header a:hover {
   color: aquamarine;
 }
+
+/* body {
+  margin: auto;
+} */

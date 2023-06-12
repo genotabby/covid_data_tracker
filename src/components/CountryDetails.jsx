@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import addCommas from "../functions/addCommas";
 
 export default function CountryDetails({ props }) {
@@ -22,6 +22,41 @@ export default function CountryDetails({ props }) {
 
   return (
     <>
+      <nav>
+        <NavLink
+          to="/"
+          className={
+            location.pathname === "/"
+              ? "breadcrumb-active"
+              : "breadcrumb-not-active"
+          }
+        >
+          Home
+        </NavLink>
+        <span className="breadcrumb-arrow">&gt;</span>
+        <NavLink
+          to="/comparator"
+          className={
+            location.pathname.startsWith("/comparator")
+              ? "breadcrumb-active"
+              : "breadcrumb-not-active"
+          }
+        >
+          Comparator
+        </NavLink>
+        <span className="breadcrumb-arrow">&gt;</span>
+        <NavLink
+          to="/comparator/country/0"
+          className={
+            location.pathname === `/comparator/country/${id}`
+              ? "breadcrumb-active"
+              : "breadcrumb-not-active"
+          }
+        >
+          Country
+        </NavLink>
+      </nav>
+      {/* Main fn here */}
       <br />
       <button onClick={handleClick}>Return</button>
       {/* <h1>ID: {id}</h1> */}
