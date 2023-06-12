@@ -8,6 +8,18 @@ import {
   VictoryTheme,
 } from "victory";
 
+const axisStyle = {
+  tickLabels: {
+    fontSize: 10,
+    // angle: 45,
+  },
+  axisLabel: {
+    padding: 39,
+    fontSize: 10,
+    fontStyle: "italic",
+  },
+};
+
 const topXvalue = 10;
 
 export default function Home({ props }) {
@@ -36,7 +48,8 @@ export default function Home({ props }) {
   const renderTickFormat = () => {
     const result = [];
     for (let i = 0; i < topXvalue; i++) {
-      result.push(countryDataToSort[i]?.countryInfo?.iso3);
+      //   result.push(countryDataToSort[i]?.countryInfo?.iso3);
+      result.push(countryDataToSort[i]?.country);
     }
     console.log(result);
     return result;
@@ -91,18 +104,26 @@ export default function Home({ props }) {
 
           tickValues={tickValueNumbers()}
           tickFormat={renderTickFormat()}
+          //   style={axisStyle}
+          style={{
+            tickLabels: { angle: 45, padding: 10, fontSize: 10 },
+            fontSize: 100,
+          }}
         />
         <VictoryAxis
           dependentAxis
           // tickFormat specifies how ticks should be displayed
+          label="Total # of Cases"
+          style={axisStyle}
           tickFormat={(x) => `${x / 1000}k`}
+          //   tickLabelComponent={<VictoryLabel dy={20} />}
         />
         {/* <VictoryBar data={countryDataToSort()} x="country" y="cases" /> */}
         <VictoryBar data={data()} x="country" y="cases" />
         {/* <VictoryBar data={data} x="country" y="cases" /> */}
       </VictoryChart>
       {/* <p>RenderTick:{JSON.stringify(renderTickFormat())}</p> */}
-      <p>County:{JSON.stringify(countryDataToSort[0])}</p>
+      <p>County:{JSON.stringify(countryDataToSort[5])}</p>
     </>
   );
 }
