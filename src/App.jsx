@@ -58,12 +58,13 @@ function App() {
   // }, []);
 
   // console.log(population);
+  let allData = { global: globalData, country: countryData };
 
   return (
     <>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home props={globalData} />} />
+        <Route path="/" element={<Home props={allData} />} />
         <Route path="/about" element={<About />} />
         <Route
           path="/Comparator"
