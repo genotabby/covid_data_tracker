@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-export default function Comparator({ props }) {
-  const [data, setData] = useState(props);
+export default function Comparator({ countryData }) {
+  const [data, setData] = useState(countryData);
   const [countryID, setCountryID] = useState(0);
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
@@ -62,7 +62,7 @@ export default function Comparator({ props }) {
       <a href="#compare_cases">Comparisons</a>
       <h1>Country</h1>
       <form onSubmit={handleGetCountry}>
-        {props.length === 0 ? (
+        {data.length === 0 ? (
           "Data is loading..."
         ) : (
           <select onChange={handleChange}>

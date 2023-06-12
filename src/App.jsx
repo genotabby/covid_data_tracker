@@ -68,7 +68,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route
           path="/Comparator"
-          element={<Comparator props={countryData} />}
+          // element={<Comparator props={countryData} />}
+          element={<Comparator countryData={countryData} />}
         />
         <Route
           path="Comparator/country/:id"

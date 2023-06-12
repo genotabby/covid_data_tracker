@@ -8,7 +8,23 @@ export default function CountryDetails({ props }) {
   const { id } = useParams();
   const idNum = parseInt(id);
   const navigate = useNavigate();
-  const AnyReactComponent = ({ text }) => <div>{text}</div>;
+  const AnyReactComponent = ({ text }) => (
+    <div
+      style={{
+        color: "white",
+        background: "grey",
+        padding: "15px 10px",
+        display: "inline-flex",
+        textAlign: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "100%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      {text}
+    </div>
+  );
 
   const defaultProps = {
     center: {
@@ -108,11 +124,15 @@ export default function CountryDetails({ props }) {
       <p>{/* Details - {id} Component {JSON.stringify(countryList[id])} */}</p>
       <div style={{ height: "100vh", width: "100%" }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "" }}
+          // bootstrapURLKeys={{ key: "" }}
           defaultCenter={defaultProps.center}
           defaultZoom={defaultProps.zoom}
         >
-          {/* <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" /> */}
+          {/* <AnyReactComponent
+            lat={countryList[id]?.countryInfo?.lat}
+            lng={countryList[id]?.countryInfo?.long}
+            // text={countryList[id]?.country}
+          /> */}
         </GoogleMapReact>
         <br />
         <button onClick={handleClick}>Return</button>
