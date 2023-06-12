@@ -3,35 +3,35 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Comparator({ props }) {
   const [data, setData] = useState(props);
-  const [countryName, setCountryName] = useState(0);
-  const [compareCountry1, setCompareCountry1] = useState("0");
-  const [compareCountry2, setCompareCountry2] = useState("0");
+  const [countryID, setCountryID] = useState(0);
+  const [compareCountryID1, setCompareCountryID1] = useState("0");
+  const [compareCountryID2, setCompareCountryID2] = useState("0");
   const navigate = useNavigate();
 
   const handleChange = (event) => {
-    setCountryName(event.target.value);
+    setCountryID(event.target.value);
     console.log("handleChange", event.target.value);
   };
   const handleCountry1Change = (event) => {
-    setCompareCountry1(event.target.value);
+    setCompareCountryID1(event.target.value);
     console.log("handleChange1", event.target.value);
   };
   const handleCountry2Change = (event) => {
-    setCompareCountry2(event.target.value);
+    setCompareCountryID2(event.target.value);
     console.log("handleChange2", event.target.value);
   };
 
   const handleCompareCountry = (event) => {
     event.preventDefault();
-    console.log("country1", compareCountry1);
-    console.log("country2", compareCountry2);
+    console.log("country1", compareCountryID1);
+    console.log("country2", compareCountryID2);
   };
 
   const handleGetCountry = (event) => {
     event.preventDefault();
     console.log("handleGetCountry Value", event.target.value);
-    console.log("test2", countryName);
-    navigate(`/comparator/country/${countryName}`);
+    console.log("test2", countryID);
+    navigate(`/comparator/country/${countryID}`);
   };
   return (
     <>
@@ -75,9 +75,11 @@ export default function Comparator({ props }) {
           <button>Compare!</button>
         </form>
       </fieldset>
-      <p>Country 1: {compareCountry1}</p>
-      <p>Country 2: {compareCountry2}</p>
-      {/* <p>Test:{JSON.stringify(data)}</p> */}
+      <p>Country 1: {data[compareCountryID1].country}</p>
+      <p>Country 1: {compareCountryID1}</p>
+      <p>Country 2: {data[compareCountryID2].country}</p>
+      <p>Country 2: {compareCountryID2}</p>
+      <p>Test:{JSON.stringify(data)}</p>
     </>
   );
 }
