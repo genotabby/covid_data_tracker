@@ -105,7 +105,7 @@ export default function Comparator({ countryData }) {
       <p>Country 1 ID: {compareCountryID1}</p>
       <p>Country 2: {data[compareCountryID2]?.country}</p>
       <p>Country 2 ID: {compareCountryID2}</p>
-      <p>Test:{JSON.stringify(data)}</p>
+      {/* <p>Test:{JSON.stringify(data)}</p> */}
     </>
   );
 }

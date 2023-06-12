@@ -95,7 +95,7 @@ export default function Home({ props }) {
           x={175}
           y={25}
           textAnchor="middle"
-          text="Top 10 Cases per million"
+          text="Top 10 by Cases per million"
         />
 
         <VictoryAxis
@@ -113,7 +113,7 @@ export default function Home({ props }) {
         <VictoryAxis
           dependentAxis
           // tickFormat specifies how ticks should be displayed
-          label="Total # of Cases"
+          label="Total # of Cases per million"
           style={axisStyle}
           tickFormat={(x) => `${x / 1000}k`}
           //   tickLabelComponent={<VictoryLabel dy={20} />}
@@ -123,7 +123,7 @@ export default function Home({ props }) {
         {/* <VictoryBar data={data} x="country" y="cases" /> */}
       </VictoryChart>
       {/* <p>RenderTick:{JSON.stringify(renderTickFormat())}</p> */}
-      <p>County:{JSON.stringify(countryDataToSort[5])}</p>
+      {/* <p>County:{JSON.stringify(countryDataToSort[5])}</p> */}
     </>
   );
 }

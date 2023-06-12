@@ -25,3 +25,7 @@ header a:hover {
 /* body {
   margin: auto;
 } */
+
+html {
+  scroll-behavior: smooth;
+}
