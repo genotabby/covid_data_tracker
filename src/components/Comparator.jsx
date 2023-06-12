@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Comparator({ props }) {
   const [data, setData] = useState(props);
   const [countryName, setCountryName] = useState(0);
-  const [compareCountry1, setCompareCountry1] = useState(0);
-  const [compareCountry2, setCompareCountry2] = useState(0);
+  const [compareCountry1, setCompareCountry1] = useState("0");
+  const [compareCountry2, setCompareCountry2] = useState("0");
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -58,7 +58,7 @@ export default function Comparator({ props }) {
         <form onSubmit={handleCompareCountry}>
           <select onChange={handleCountry1Change}>
             {data.map((countryData, idx) => (
-              <option key={idx}>
+              <option key={idx} value={idx}>
                 {countryData.country}
                 {/* {countryData.Province_State || countryData.Country_Region} */}
               </option>
@@ -66,7 +66,7 @@ export default function Comparator({ props }) {
           </select>
           <select onChange={handleCountry2Change}>
             {data.map((countryData, idx) => (
-              <option key={idx}>
+              <option key={idx} value={idx}>
                 {countryData.country}
                 {/* {countryData.Province_State || countryData.Country_Region} */}
               </option>
@@ -75,8 +75,8 @@ export default function Comparator({ props }) {
           <button>Compare!</button>
         </form>
       </fieldset>
-      <p>Country 1:{compareCountry1}</p>
-      <p>Country 2:{compareCountry2}</p>
+      <p>Country 1: {compareCountry1}</p>
+      <p>Country 2: {compareCountry2}</p>
       {/* <p>Test:{JSON.stringify(data)}</p> */}
     </>
   );
