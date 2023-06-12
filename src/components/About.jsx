@@ -1,6 +1,32 @@
+import { NavLink } from "react-router-dom";
+
 export default function About() {
   return (
     <>
+      <nav>
+        <NavLink
+          to="/"
+          className={
+            location.pathname === "/"
+              ? "breadcrumb-active"
+              : "breadcrumb-not-active"
+          }
+        >
+          Home
+        </NavLink>
+        <span className="breadcrumb-arrow">&gt;</span>
+        <NavLink
+          to="/about"
+          className={
+            location.pathname.startsWith("/about")
+              ? "breadcrumb-active"
+              : "breadcrumb-not-active"
+          }
+        >
+          About
+        </NavLink>
+      </nav>
+
       <h1>About</h1>
       <div className="AboutDescription">
         <p>
