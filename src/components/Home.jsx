@@ -8,6 +8,8 @@ import {
   VictoryTheme,
 } from "victory";
 
+const topXvalue = 10;
+
 export default function Home({ props }) {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -20,7 +22,7 @@ export default function Home({ props }) {
 
   const data = () => {
     const dataResult = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < topXvalue; i++) {
       dataResult.push({
         country: i + 1,
         cases: countryDataToSort[i]?.casesPerOneMillion,
@@ -31,24 +33,10 @@ export default function Home({ props }) {
     return dataResult;
   };
 
-  //   const data = [
-  //     { country: 1, cases: 13000 },
-  //     { country: 2, cases: 16500 },
-  //     { country: 3, cases: 14250 },
-  //     { country: 4, cases: 19000 },
-  //     { country: 5, cases: 19000 },
-  //     { country: 6, cases: 19000 },
-  //     { country: 7, cases: 19000 },
-  //     { country: 8, cases: 19000 },
-  //     { country: 9, cases: 19000 },
-  //     { country: 10, cases: 19000 },
-  //   ];
-
   const renderTickFormat = () => {
     const result = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < topXvalue; i++) {
       result.push(countryDataToSort[i]?.countryInfo?.iso3);
-      //   result.push(props?.country[i]?.countryInfo?.iso3);
     }
     console.log(result);
     return result;
@@ -56,7 +44,7 @@ export default function Home({ props }) {
 
   const tickValueNumbers = () => {
     let result = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < topXvalue; i++) {
       result.push(i + 1);
       //   result++;
     }
@@ -94,7 +82,7 @@ export default function Home({ props }) {
           x={175}
           y={25}
           textAnchor="middle"
-          text="Cases per million"
+          text="Top 10 Cases per million"
         />
 
         <VictoryAxis
@@ -102,20 +90,7 @@ export default function Home({ props }) {
           // they are placed on the axis
 
           tickValues={tickValueNumbers()}
-          //   tickValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           tickFormat={renderTickFormat()}
-          //   tickFormat={[
-          //     "Quarter 1",
-          //     "Quarter 2",
-          //     "Quarter 3",
-          //     "Quarter 4",
-          //     "Quarter 5",
-          //     "Quarter 6",
-          //     "Quarter 7",
-          //     "Quarter 8",
-          //     "Quarter 9",
-          //     "Quarter 10",
-          //   ]}
         />
         <VictoryAxis
           dependentAxis
