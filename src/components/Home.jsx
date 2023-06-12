@@ -11,17 +11,18 @@ export default function Home({ props }) {
     <>
       <h1 className="Header">Global details</h1>
       <p>
-        Global Confirmed Cases:{" "}
+        Coronavirus Cases:{" "}
         {props.length === 0
           ? "The virus is hindering our systems, causing at some points an overwhelming delay"
           : addCommas(props?.summaryStats?.global?.confirmed)}
       </p>
       <p>
-        Global Confirmed Deaths:{" "}
+        Deaths:{" "}
         {props.length === 0
           ? "Data is loading..."
           : addCommas(props?.summaryStats?.global?.deaths)}
       </p>
+
       <button onClick={handleClick}>view by country</button>
 
       {/* <p>Global Confirmed cases: {props?.summaryStats?.global?.confirmed}</p>

@@ -58,6 +58,8 @@ export default function Comparator({ props }) {
           Comparator
         </NavLink>
       </nav>
+
+      <a href="#compare_cases">Comparisons</a>
       <h1>Country</h1>
       <form onSubmit={handleGetCountry}>
         {props.length === 0 ? (
@@ -76,6 +78,7 @@ export default function Comparator({ props }) {
         <button>Set as Favourite</button>
       </form>
 
+      <a id="compare_cases" />
       <fieldset>
         <legend>Compare cases between countries</legend>
         <form onSubmit={handleCompareCountry}>
