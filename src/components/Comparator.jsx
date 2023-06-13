@@ -36,7 +36,7 @@ export default function Comparator({ countryData }) {
 
   const handleFav = (event) => {
     event.preventDefault();
-    console.log("Set as Favourite");
+    console.log("Set as Favourite", data[countryID]);
   };
   return (
     <>
@@ -78,7 +78,7 @@ export default function Comparator({ countryData }) {
             ))}
           </select>
         )}
-        <button>Detailed info</button>
+        <button>Detailed info with map</button>
         {/* <Link to={`country/186`}>Test</Link> */}
         <button onClick={handleFav}>Set as Favourite</button>
         <br />
@@ -116,14 +116,14 @@ export default function Comparator({ countryData }) {
       <p>Country 1 ID: {compareCountryID1}</p>
       <img
         className="image"
-        width="30%"
+        width="25%"
         src={countryData[compareCountryID1]?.countryInfo?.flag}
       ></img>
       <p>Country 2: {data[compareCountryID2]?.country}</p>
       <p>Country 2 ID: {compareCountryID2}</p>
       <img
         className="image"
-        width="30%"
+        width="25%"
         src={countryData[compareCountryID2]?.countryInfo?.flag}
       ></img>
       {/* <p>Test:{JSON.stringify(data)}</p> */}

@@ -6,7 +6,7 @@ import GoogleMapReact from "google-map-react";
 export default function CountryDetails({ props }) {
   const [countryList, setCountryList] = useState(props);
   const { id } = useParams();
-  const idNum = parseInt(id);
+  // const idNum = parseInt(id);
   const navigate = useNavigate();
   const AnyReactComponent = ({ text }) => (
     <div
@@ -63,7 +63,8 @@ export default function CountryDetails({ props }) {
         <NavLink
           to="/comparator"
           className={
-            location.pathname.startsWith("/comparator")
+            // location.pathname.startsWith("/comparator")
+            location.pathname === "/comparator"
               ? "breadcrumb-active"
               : "breadcrumb-not-active"
           }
