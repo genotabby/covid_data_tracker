@@ -65,7 +65,7 @@ export default function Comparator({ countryData }) {
     await response.json();
     // setFavCountries(favCountries?.records?.filter((h) => h.id !== id));
     async function fetchFavourites() {
-      await timeout(1000);
+      await timeout(500);
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
@@ -121,7 +121,7 @@ export default function Comparator({ countryData }) {
     }
     AddFavourite();
     async function fetchFavourites() {
-      await timeout(1000);
+      await timeout(500);
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
