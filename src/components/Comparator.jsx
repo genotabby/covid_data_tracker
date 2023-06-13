@@ -76,6 +76,12 @@ export default function Comparator({ countryData }) {
         <button>Detailed info</button>
         {/* <Link to={`country/186`}>Test</Link> */}
         <button>Set as Favourite</button>
+        <br />
+        <img
+          className="image"
+          width="30%"
+          src={countryData[countryID]?.countryInfo?.flag}
+        ></img>
       </form>
 
       <a id="compare_cases" />
@@ -103,8 +109,18 @@ export default function Comparator({ countryData }) {
       </fieldset>
       <p>Country 1: {data[compareCountryID1]?.country}</p>
       <p>Country 1 ID: {compareCountryID1}</p>
+      <img
+        className="image"
+        width="30%"
+        src={countryData[compareCountryID1]?.countryInfo?.flag}
+      ></img>
       <p>Country 2: {data[compareCountryID2]?.country}</p>
       <p>Country 2 ID: {compareCountryID2}</p>
+      <img
+        className="image"
+        width="30%"
+        src={countryData[compareCountryID2]?.countryInfo?.flag}
+      ></img>
       {/* <p>Test:{JSON.stringify(data)}</p> */}
     </>
   );
