@@ -10,7 +10,12 @@ export default function addCommas(amount) {
   //     c = Math.trunc(amount % 1000);
   //     return `${b},${c}`;
   //   } else {
+  if (amount == undefined) {
+    return;
+  }
   const formattedNumber = amount.toLocaleString("en-US");
+
+  //   const formattedNumber = amount;
   return formattedNumber;
   //   return amount;
   //   }

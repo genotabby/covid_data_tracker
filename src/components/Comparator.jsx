@@ -7,6 +7,15 @@ export default function Comparator({ countryData }) {
   const [countryID, setCountryID] = useState(0);
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
+  const continent = [
+    "",
+    "South America",
+    "North America",
+    "Africa",
+    "Europe",
+    "Australia-Oceania",
+    "Asia",
+  ];
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -79,6 +88,15 @@ export default function Comparator({ countryData }) {
             ))}
           </select>
         )}
+        <select onChange={handleChange}>
+          {data
+            .filter((countryData) => countryData?.country.startsWith("A"))
+            .map((countryData, idx) => (
+              <option key={idx} name="countryDropdown" value={idx}>
+                {countryData?.country}
+              </option>
+            ))}
+        </select>
         <button>Detailed info with map</button>
         {/* <Link to={`country/186`}>Test</Link> */}
         <button onClick={handleFav}>Set as Favourite</button>
