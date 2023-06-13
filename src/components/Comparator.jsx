@@ -5,22 +5,27 @@ import addCommas from "../functions/addCommas";
 export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
   const [countryID, setCountryID] = useState(0);
+  const [continentID, setContinentID] = useState("Australia-Oceania");
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
   const continent = [
-    "",
+    "Australia-Oceania",
+    "Africa",
+    "Asia",
+    "Europe",
     "South America",
     "North America",
-    "Africa",
-    "Europe",
-    "Australia-Oceania",
-    "Asia",
+    "",
   ];
   const navigate = useNavigate();
 
   const handleChange = (event) => {
     setCountryID(event.target.value);
     console.log("handleChange", event.target.value);
+  };
+  const handleContinentChange = (event) => {
+    setContinentID(event.target.value);
+    console.log("handleContChange:", event.target.value);
   };
   const handleCountry1Change = (event) => {
     setCompareCountryID1(event.target.value);
@@ -80,17 +85,22 @@ export default function Comparator({ countryData }) {
         {data.length === 0 ? (
           "Data is loading..."
         ) : (
-          <select onChange={handleChange}>
-            {data.map((countryData, idx) => (
-              <option key={idx} name="countryDropdown" value={idx}>
-                {countryData.country}
+          //   <select>
+          <select onChange={handleContinentChange}>
+            {continent.map((continent, idx) => (
+              <option key={idx} name="continentDropdown" value={continent}>
+                {continent}
               </option>
             ))}
           </select>
         )}
         <select onChange={handleChange}>
           {data
-            .filter((countryData) => countryData?.country.startsWith("A"))
+            // .filter((countryData) => countryData?.country.includes("A"))
+            // .filter(
+            //   (countryData) => countryData?.continent.includes("Asia")
+            // countryData?.continent === { continentID }
+            // )
             .map((countryData, idx) => (
               <option key={idx} name="countryDropdown" value={idx}>
                 {countryData?.country}
