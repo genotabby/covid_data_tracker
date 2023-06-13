@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import addCommas from "../functions/addCommas";
 
@@ -8,6 +8,7 @@ export default function Comparator({ countryData }) {
   const [continentID, setContinentID] = useState("Australia-Oceania");
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
+  const [favCountries, setFavCountries] = useState({});
   const continent = [
     "Australia-Oceania",
     "Africa",
@@ -49,9 +50,40 @@ export default function Comparator({ countryData }) {
     navigate(`/comparator/country/${countryID}`);
   };
 
+  useEffect(() => {
+    async function fetchFavourites() {
+      const response = await fetch(
+        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+        {
+          headers: {
+            Authorization: "Bearer keyU9luii8dEwEdfH",
+          },
+        }
+      );
+      const jsonData = await response.json();
+      setFavCountries(jsonData);
+    }
+    fetchFavourites();
+  }, []);
+
   const handleFav = (event) => {
     event.preventDefault();
     console.log("Set as Favourite", data[countryID]);
+    async function AddFavourite() {
+      const response = await fetch(
+        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer keyU9luii8dEwEdfH",
+          },
+          body: `{"records":[{"fields":{"country":"${data[countryID].country}"}}]}`,
+        }
+      );
+      await response.json();
+    }
+    AddFavourite();
   };
   return (
     <>
@@ -108,7 +140,6 @@ export default function Comparator({ countryData }) {
             ))}
         </select>
         <button>Detailed info with map</button>
-        {/* <Link to={`country/186`}>Test</Link> */}
         <button onClick={handleFav}>Set as Favourite</button>
         <br />
         <img
@@ -156,6 +187,9 @@ export default function Comparator({ countryData }) {
         src={countryData[compareCountryID2]?.countryInfo?.flag}
       ></img>
       {/* <p>Test:{JSON.stringify(data)}</p> */}
+      <br></br>
+      <>P:{JSON.stringify(favCountries)}</>
+      {/* favCountries.map(fetchedCountryData) */}
     </>
   );
 }
