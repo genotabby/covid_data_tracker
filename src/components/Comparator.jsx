@@ -49,6 +49,10 @@ export default function Comparator({ countryData }) {
     console.log("test2", countryID);
     navigate(`/comparator/country/${countryID}`);
   };
+  // For api to wait before GET
+  function timeout(delay) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
 
   useEffect(() => {
     async function fetchFavourites() {
@@ -85,6 +89,20 @@ export default function Comparator({ countryData }) {
       await response.json();
     }
     AddFavourite();
+    async function fetchFavourites() {
+      await timeout(1000);
+      const response = await fetch(
+        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+        {
+          headers: {
+            Authorization: "Bearer keyU9luii8dEwEdfH",
+          },
+        }
+      );
+      const jsonData = await response.json();
+      setFavCountries(jsonData);
+    }
+    fetchFavourites();
   };
   return (
     <>
@@ -111,8 +129,10 @@ export default function Comparator({ countryData }) {
           Comparator
         </NavLink>
       </nav>
-
-      <a href="#compare_cases">Comparisons</a>
+      <br />
+      <fieldset>
+        <a href="#compare_cases">Jump to Comparisons</a>
+      </fieldset>
       <h1>Country</h1>
       <form onSubmit={handleGetCountry}>
         {data.length === 0 ? (
@@ -149,6 +169,39 @@ export default function Comparator({ countryData }) {
           src={countryData[countryID]?.countryInfo?.flag}
         ></img>
       </form>
+
+      <table border="1">
+        <caption>Favourites</caption>
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Cases</th>
+            <th>Population</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {favCountries?.records?.map((fetchedCountryData, idx) => (
+            <tr key={idx}>
+              <td>
+                <img
+                  className="image"
+                  width="30%"
+                  src={data[fetchedCountryData?.fields?.ID]?.countryInfo?.flag}
+                ></img>{" "}
+                {fetchedCountryData?.fields?.country}
+              </td>
+              <td>{addCommas(data[fetchedCountryData?.fields?.ID]?.cases)}</td>
+              <td>
+                {addCommas(data[fetchedCountryData?.fields?.ID]?.population)}
+              </td>
+              <td>
+                <button>X</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       <a id="compare_cases" />
       <fieldset>
@@ -187,14 +240,12 @@ export default function Comparator({ countryData }) {
         width="25%"
         src={countryData[compareCountryID2]?.countryInfo?.flag}
       ></img>
-      {/* <p>Test:{JSON.stringify(data)}</p> */}
       <br></br>
-      {/* <>P:{JSON.stringify(favCountries)}</> */}
-      {favCountries?.records?.map((fetchedCountryData, idx) => (
+      {/* {favCountries?.records?.map((fetchedCountryData, idx) => (
         <p key={idx}>
           {fetchedCountryData?.fields?.country},{fetchedCountryData?.fields?.ID}
         </p>
-      ))}
+      ))} */}
     </>
   );
 }
