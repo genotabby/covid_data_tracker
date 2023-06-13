@@ -4,6 +4,8 @@ import "../styles/breadcrumbs.css";
 export default function ContactMe() {
   return (
     <>
+      {" "}
+      {/*Breadcrumbs reference: https://www.makeuseof.com/create-breadcrumbs-in-reactjs/ */}
       <nav>
         <NavLink
           to="/"

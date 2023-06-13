@@ -48,6 +48,7 @@ export default function CountryDetails({ props }) {
 
   return (
     <>
+      {/*Breadcrumbs reference: https://www.makeuseof.com/create-breadcrumbs-in-reactjs/ */}
       <nav>
         <NavLink
           to="/"

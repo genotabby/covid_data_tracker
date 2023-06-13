@@ -138,6 +138,7 @@ export default function Comparator({ countryData }) {
   return (
     <>
       <nav>
+        {/*Breadcrumbs reference: https://www.makeuseof.com/create-breadcrumbs-in-reactjs/ */}
         <NavLink
           to="/"
           className={

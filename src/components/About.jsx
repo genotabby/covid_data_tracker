@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function About() {
   return (
     <>
+      {/*Breadcrumbs reference: https://www.makeuseof.com/create-breadcrumbs-in-reactjs/ */}
       <nav>
         <NavLink
           to="/"
