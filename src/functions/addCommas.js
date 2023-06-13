@@ -1,5 +1,5 @@
 export default function addCommas(amount) {
-  let a, b, c;
+  //   let a, b, c;
   //   if (amount > 1000000) {
   //     a = Math.trunc(amount / 1000000);
   //     b = Math.trunc((amount - a * 1000000) / 1000);
@@ -10,6 +10,8 @@ export default function addCommas(amount) {
   //     c = Math.trunc(amount % 1000);
   //     return `${b},${c}`;
   //   } else {
-  return amount;
+  const formattedNumber = amount.toLocaleString("en-US");
+  return formattedNumber;
+  //   return amount;
   //   }
 }

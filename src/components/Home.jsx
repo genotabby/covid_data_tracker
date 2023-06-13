@@ -76,9 +76,11 @@ export default function Home({ props }) {
       </p>
       <p>
         Deaths:{" "}
-        {props.global.length === 0
-          ? "Data is loading..."
-          : addCommas(props?.global?.summaryStats?.global?.deaths)}
+        {props.global.length === 0 ? (
+          <progress />
+        ) : (
+          addCommas(props?.global?.summaryStats?.global?.deaths)
+        )}
       </p>
 
       <button onClick={handleClick}>view by country</button>

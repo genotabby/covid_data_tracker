@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import addCommas from "../functions/addCommas";
 
 export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
@@ -113,14 +114,14 @@ export default function Comparator({ countryData }) {
         </form>
       </fieldset>
       <p>Country 1: {data[compareCountryID1]?.country}</p>
-      <p>Country 1 ID: {compareCountryID1}</p>
+      <p>Country 1 cases: {addCommas(data[compareCountryID1]?.cases)}</p>
       <img
         className="image"
         width="25%"
         src={countryData[compareCountryID1]?.countryInfo?.flag}
       ></img>
       <p>Country 2: {data[compareCountryID2]?.country}</p>
-      <p>Country 2 ID: {compareCountryID2}</p>
+      <p>Country 2 cases: {addCommas(data[compareCountryID2]?.cases)}</p>
       <img
         className="image"
         width="25%"
