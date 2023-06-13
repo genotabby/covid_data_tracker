@@ -33,6 +33,11 @@ export default function Comparator({ countryData }) {
     console.log("test2", countryID);
     navigate(`/comparator/country/${countryID}`);
   };
+
+  const handleFav = (event) => {
+    event.preventDefault();
+    console.log("Set as Favourite");
+  };
   return (
     <>
       <nav>
@@ -75,7 +80,7 @@ export default function Comparator({ countryData }) {
         )}
         <button>Detailed info</button>
         {/* <Link to={`country/186`}>Test</Link> */}
-        <button>Set as Favourite</button>
+        <button onClick={handleFav}>Set as Favourite</button>
         <br />
         <img
           className="image"
