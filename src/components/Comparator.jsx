@@ -176,6 +176,10 @@ export default function Comparator({ countryData }) {
           <tr>
             <th>Country</th>
             <th>Cases</th>
+            <th>Deaths</th>
+            <th>Active</th>
+            <th>Cases/M</th>
+            <th>Deaths/M</th>
             <th>Population</th>
             <th>Actions</th>
           </tr>
@@ -192,6 +196,18 @@ export default function Comparator({ countryData }) {
                 {fetchedCountryData?.fields?.country}
               </td>
               <td>{addCommas(data[fetchedCountryData?.fields?.ID]?.cases)}</td>
+              <td>{addCommas(data[fetchedCountryData?.fields?.ID]?.deaths)}</td>
+              <td>{addCommas(data[fetchedCountryData?.fields?.ID]?.active)}</td>
+              <td>
+                {addCommas(
+                  data[fetchedCountryData?.fields?.ID]?.casesPerOneMillion
+                )}
+              </td>
+              <td>
+                {addCommas(
+                  data[fetchedCountryData?.fields?.ID]?.deathsPerOneMillion
+                )}
+              </td>
               <td>
                 {addCommas(data[fetchedCountryData?.fields?.ID]?.population)}
               </td>
