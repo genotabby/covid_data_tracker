@@ -49,6 +49,37 @@ export default function Comparator({ countryData }) {
     console.log("test2", countryID);
     navigate(`/comparator/country/${countryID}`);
   };
+
+  async function handleDelete(id) {
+    console.log("DELETE!", id);
+    const response = await fetch(
+      `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer keyU9luii8dEwEdfH",
+        },
+      }
+    );
+    await response.json();
+    // setFavCountries(favCountries?.records?.filter((h) => h.id !== id));
+    async function fetchFavourites() {
+      await timeout(1000);
+      const response = await fetch(
+        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+        {
+          headers: {
+            Authorization: "Bearer keyU9luii8dEwEdfH",
+          },
+        }
+      );
+      const jsonData = await response.json();
+      setFavCountries(jsonData);
+    }
+    fetchFavourites();
+  }
+
   // For api to wait before GET
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
@@ -161,7 +192,7 @@ export default function Comparator({ countryData }) {
             ))}
         </select>
         <button>Detailed info with map</button>
-        <button onClick={handleFav}>Set as Favourite</button>
+        <button onClick={handleFav}>Add to compare</button>
         <br />
         <img
           className="image"
@@ -212,7 +243,9 @@ export default function Comparator({ countryData }) {
                 {addCommas(data[fetchedCountryData?.fields?.ID]?.population)}
               </td>
               <td>
-                <button>X</button>
+                <button onClick={() => handleDelete(fetchedCountryData?.id)}>
+                  X
+                </button>
               </td>
             </tr>
           ))}
