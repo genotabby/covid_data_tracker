@@ -281,7 +281,7 @@ export default function Comparator({ countryData }) {
               </td>
               <td>
                 <button onClick={() => handleDelete(fetchedCountryData?.id)}>
-                  X
+                  🗑️
                 </button>
               </td>
             </tr>
