@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import addCommas from "../functions/addCommas";
 import ComparatorBreadcrumb from "./BreadCrumbs/ComparatorBreadcrumb";
+import continent from "../Data/continentList";
 
 export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
@@ -11,15 +12,6 @@ export default function Comparator({ countryData }) {
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
   const [favCountries, setFavCountries] = useState({});
-  const continent = [
-    "Australia-Oceania",
-    "Africa",
-    "Asia",
-    "Europe",
-    "South America",
-    "North America",
-    // "",
-  ];
   const navigate = useNavigate();
 
   const handleChange = (event) => {
