@@ -314,6 +314,10 @@ export default function Comparator({ countryData }) {
       </fieldset>
       <p>Country 1: {data[compareCountryID1]?.country}</p>
       <p>Country 1 cases: {addCommas(data[compareCountryID1]?.cases)}</p>
+      <p>
+        Country 1 cases/M:{" "}
+        {addCommas(data[compareCountryID1]?.casesPerOneMillion)}
+      </p>
       <img
         className="image"
         width="25%"
@@ -321,6 +325,10 @@ export default function Comparator({ countryData }) {
       ></img>
       <p>Country 2: {data[compareCountryID2]?.country}</p>
       <p>Country 2 cases: {addCommas(data[compareCountryID2]?.cases)}</p>
+      <p>
+        Country 2 cases/M:{" "}
+        {addCommas(data[compareCountryID2]?.casesPerOneMillion)}
+      </p>
       <img
         className="image"
         width="25%"
