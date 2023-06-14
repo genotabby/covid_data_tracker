@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import addCommas from "../functions/addCommas";
-import ComparatorBreadcrumb from "./BreadCrumbs/ComparatorBreadcrumb";
+// import ComparatorBreadcrumb from "./BreadCrumbs/ComparatorBreadcrumb";
 import continent from "../Data/continentList";
 
 export default function Comparator({ countryData }) {
@@ -143,7 +143,31 @@ export default function Comparator({ countryData }) {
   };
   return (
     <>
-      <ComparatorBreadcrumb />
+      {/* <ComparatorBreadcrumb /> */}
+      <nav>
+        {/*Breadcrumbs reference: https://www.makeuseof.com/create-breadcrumbs-in-reactjs/ */}
+        <NavLink
+          to="/"
+          className={
+            location.pathname === "/"
+              ? "breadcrumb-active"
+              : "breadcrumb-not-active"
+          }
+        >
+          Home
+        </NavLink>
+        <span className="breadcrumb-arrow">&gt;</span>
+        <NavLink
+          to="/comparator"
+          className={
+            location.pathname.startsWith("/comparator")
+              ? "breadcrumb-active"
+              : "breadcrumb-not-active"
+          }
+        >
+          Comparator
+        </NavLink>
+      </nav>
       <br />
       <fieldset>
         <a href="#compare_cases">Jump to Direct Comparisons</a>
