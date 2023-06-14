@@ -1,8 +1,7 @@
 ## Introduction
 Compare the latest data between countries
 
-Technologies & Tools used
--------------
+## Technologies & Tools used
 
 - HTML
 - CSS
@@ -25,8 +24,7 @@ https://disease.sh/v3/covid-19/countries/
 https://airtable.com/
 
 
-Deployment
--------------
+## Deployment
 The game is deployed on Vercel and can be used here:<br>
 https://tracking-api-sigma.vercel.app/
 
