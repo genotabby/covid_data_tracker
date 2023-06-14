@@ -110,6 +110,10 @@ export default function Comparator({ countryData }) {
     event.preventDefault();
     console.log("Set as Favourite", data[countryID]);
     console.log("countryID", countryID);
+    if (countryID === "SELECT") {
+      console.log("exit");
+      return;
+    }
     async function AddFavourite() {
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
@@ -230,12 +234,14 @@ export default function Comparator({ countryData }) {
           </select>
         )}
         <select onChange={handleChange}>
+          <option value="SELECT">Select country</option>
           {data
             // .filter((countryData) => countryData?.country.includes("A"))
             // .filter(
             //   (countryData) => countryData?.continent.includes("Asia")
             // countryData?.continent === { continentID }
             // )
+
             .map((countryData, idx) => (
               <option key={idx} name="countryDropdown" value={idx}>
                 {countryData?.country}
