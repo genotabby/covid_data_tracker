@@ -77,41 +77,6 @@ export default function CountryDetails({ props }) {
       <p>Recovered per Million: {addCommas(country?.recoveredPerOneMillion)}</p>
       {/* Main fn here */}
       <br />
-      {/* <button onClick={handleClick}>Return</button> */}
-      {/* <h1>ID: {id}</h1> */}
-
-      {/* <h2>
-        Detail for {countryList[id]?.country},{" "}
-        {countryList[id]?.countryInfo?.iso3}
-      </h2> */}
-      {/* <h3>
-        Coordinates: <br />
-        Latitude: {countryList[id]?.countryInfo?.lat} Longitude:{" "}
-        {countryList[id]?.countryInfo?.long}
-      </h3>
-      <img
-        className="image"
-        width="30%"
-        src={countryList[id]?.countryInfo?.flag}
-      ></img>
-      <p>Population: {addCommas(countryList[id]?.population)}</p>
-      <p>Tests done: {addCommas(countryList[id]?.tests)}</p>
-      <p>Cases: {addCommas(countryList[id]?.cases)}</p>
-      <p>Critical: {addCommas(JSON.stringify(countryList[id]?.critical))}</p>
-      <p>Deaths: {addCommas(countryList[id]?.deaths)}</p>
-      <p>Recovered: {addCommas(countryList[id]?.recovered)}</p>
-      <p>Cases per Million: {addCommas(countryList[id]?.casesPerOneMillion)}</p>
-      <p>
-        Critical per Million:{" "}
-        {addCommas(countryList[id]?.criticalPerOneMillion)}
-      </p>
-      <p>
-        Deaths per Million: {addCommas(countryList[id]?.deathsPerOneMillion)}
-      </p>
-      <p>
-        Recovered per Million:{" "}
-        {addCommas(countryList[id]?.recoveredPerOneMillion)}
-      </p> */}
       <p>{/* Details - {id} Component {JSON.stringify(countryList[id])} */}</p>
       <div style={{ height: "100vh", width: "100%" }}>
         <GoogleMapReact

@@ -186,30 +186,10 @@ export default function Comparator({ countryData }) {
         <button>Detailed info with map</button>
         {/* <button onClick={handleFav}>Add to compare</button> */}
         <br />
-        {/* <img
-          className="image"
-          width="30%"
-          //   src={countryData[countryID]?.countryInfo?.flag}
-          src={countryData[forDetailedCountryID]?.countryInfo?.flag}
-        ></img> */}
       </form>
       <h2>Add Favourites</h2>
-      {/* Add favourites */}
-      {/* <form onSubmit={handleFavouriteChange}> */}
-      <form>
-        {/* {data.length === 0 ? (
-          "Data is loading..."
-        ) : (
-          //   <select>
 
-          <select onChange={handleContinentChange}>
-            {continent.map((continent, idx) => (
-              <option key={idx} name="continentDropdown" value={continent}>
-                {continent}
-              </option>
-            ))}
-          </select>
-        )} */}
+      <form>
         <select onChange={handleChange}>
           <option value="SELECT">Select country</option>
           {data
