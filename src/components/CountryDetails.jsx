@@ -56,13 +56,6 @@ export default function CountryDetails({ props }) {
       <br />
       <button onClick={handleClick}>Return</button>
 
-      {/* <p>
-        Details - {id} Component {JSON.stringify(country)}
-      </p>
-      <p>
-        Details - {id} Component {JSON.stringify(countryList.length)}
-      </p> */}
-
       <h2>
         Detail for {country?.country}, {country?.countryInfo?.iso3}
       </h2>
