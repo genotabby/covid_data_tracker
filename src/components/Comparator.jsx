@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import addCommas from "../functions/addCommas";
-import ComparatorBreadcrumb from "./BreadCrumbs/ComparatorBreadcrumb";
+// import ComparatorBreadcrumb from "./BreadCrumbs/ComparatorBreadcrumb";
 import continent from "../Data/continentList";
 
 export default function Comparator({ countryData }) {
@@ -143,7 +143,7 @@ export default function Comparator({ countryData }) {
   };
   return (
     <>
-      <ComparatorBreadcrumb />
+      {/* <ComparatorBreadcrumb /> */}
       <nav>
         {/*Breadcrumbs reference: https://www.makeuseof.com/create-breadcrumbs-in-reactjs/ */}
         <NavLink
