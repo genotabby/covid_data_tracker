@@ -86,12 +86,15 @@ export default function CountryDetails({ props }) {
           Country
         </NavLink>
       </nav>
-      <p>
+      <br />
+      <button onClick={handleClick}>Return</button>
+
+      {/* <p>
         Details - {id} Component {JSON.stringify(country)}
       </p>
       <p>
         Details - {id} Component {JSON.stringify(countryList.length)}
-      </p>
+      </p> */}
 
       <h2>
         Detail for {country?.country}, {country?.countryInfo?.iso3}
@@ -105,7 +108,7 @@ export default function CountryDetails({ props }) {
       <p>Population: {addCommas(country?.population)}</p>
       <p>Tests done: {addCommas(country?.tests)}</p>
       <p>Cases: {addCommas(country?.cases)}</p>
-      <p>Critical: {addCommas(JSON.stringify(country?.critical))}</p>
+      <p>Critical: {addCommas(country?.critical)}</p>
       <p>Deaths: {addCommas(country?.deaths)}</p>
       <p>Recovered: {addCommas(country?.recovered)}</p>
       <p>Cases per Million: {addCommas(country?.casesPerOneMillion)}</p>
@@ -114,7 +117,7 @@ export default function CountryDetails({ props }) {
       <p>Recovered per Million: {addCommas(country?.recoveredPerOneMillion)}</p>
       {/* Main fn here */}
       <br />
-      <button onClick={handleClick}>Return</button>
+      {/* <button onClick={handleClick}>Return</button> */}
       {/* <h1>ID: {id}</h1> */}
 
       {/* <h2>

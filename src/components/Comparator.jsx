@@ -4,8 +4,8 @@ import addCommas from "../functions/addCommas";
 
 export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
-  const [countryID, setCountryID] = useState(0);
-  const [forDetailedCountryID, setForDetailedCountryID] = useState(4);
+  const [forDetailedCountryID, setForDetailedCountryID] = useState("SELECT");
+  const [countryID, setCountryID] = useState("SELECT");
   const [continentID, setContinentID] = useState("Australia-Oceania");
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
@@ -17,7 +17,7 @@ export default function Comparator({ countryData }) {
     "Europe",
     "South America",
     "North America",
-    "",
+    // "",
   ];
   const navigate = useNavigate();
 
@@ -52,6 +52,10 @@ export default function Comparator({ countryData }) {
     event.preventDefault();
     console.log("handleGetCountry Value", event.target.value);
     console.log("test2", forDetailedCountryID);
+    if (forDetailedCountryID === "SELECT") {
+      console.log("No Country Selected!");
+      return;
+    }
     navigate(`/comparator/country/${forDetailedCountryID}`);
   };
 
@@ -111,7 +115,7 @@ export default function Comparator({ countryData }) {
     console.log("Set as Favourite", data[countryID]);
     console.log("countryID", countryID);
     if (countryID === "SELECT") {
-      console.log("exit");
+      console.log("No Country Selected!");
       return;
     }
     async function AddFavourite() {
@@ -188,13 +192,16 @@ export default function Comparator({ countryData }) {
             ))}
           </select>
         )}
+        <p>{continentID}</p>
         <select onChange={handleDetailedCountryChange}>
+          <option value="SELECT">Select country</option>
           {data
             // .filter((countryData) => countryData?.country.includes("A"))
-            // .filter(
-            //   (countryData) => countryData?.continent.includes("Asia")
-            // countryData?.continent === { continentID }
-            // )
+            .filter(
+              (countryData) => countryData?.continent.includes("Asia")
+              //   (countryData) => countryData?.continent.includes({ continentID })
+              //   countryData?.continent === { continentID }
+            )
             .map((countryData, idx) => (
               //   <option key={idx} name="countryDropdown" value={idx}>
               <option
@@ -220,7 +227,7 @@ export default function Comparator({ countryData }) {
       {/* Add favourites */}
       {/* <form onSubmit={handleFavouriteChange}> */}
       <form>
-        {data.length === 0 ? (
+        {/* {data.length === 0 ? (
           "Data is loading..."
         ) : (
           //   <select>
@@ -232,16 +239,14 @@ export default function Comparator({ countryData }) {
               </option>
             ))}
           </select>
-        )}
+        )} */}
         <select onChange={handleChange}>
           <option value="SELECT">Select country</option>
           {data
             // .filter((countryData) => countryData?.country.includes("A"))
-            // .filter(
+            // .filter
             //   (countryData) => countryData?.continent.includes("Asia")
             // countryData?.continent === { continentID }
-            // )
-
             .map((countryData, idx) => (
               <option key={idx} name="countryDropdown" value={idx}>
                 {countryData?.country}
