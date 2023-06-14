@@ -5,6 +5,7 @@ import addCommas from "../functions/addCommas";
 export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
   const [countryID, setCountryID] = useState(0);
+  const [forDetailedCountryID, setForDetailedCountryID] = useState(4);
   const [continentID, setContinentID] = useState("Australia-Oceania");
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
@@ -23,6 +24,10 @@ export default function Comparator({ countryData }) {
   const handleChange = (event) => {
     setCountryID(event.target.value);
     console.log("handleChange", event.target.value);
+  };
+  const handleDetailedCountryChange = (event) => {
+    setForDetailedCountryID(event.target.value);
+    console.log("handleFavouriteChange", event.target.value);
   };
   const handleContinentChange = (event) => {
     setContinentID(event.target.value);
@@ -46,8 +51,8 @@ export default function Comparator({ countryData }) {
   const handleGetCountry = (event) => {
     event.preventDefault();
     console.log("handleGetCountry Value", event.target.value);
-    console.log("test2", countryID);
-    navigate(`/comparator/country/${countryID}`);
+    console.log("test2", forDetailedCountryID);
+    navigate(`/comparator/country/${forDetailedCountryID}`);
   };
 
   async function handleDelete(id) {
@@ -165,12 +170,57 @@ export default function Comparator({ countryData }) {
       <fieldset>
         <a href="#compare_cases">Jump to Comparisons</a>
       </fieldset>
-      <h1>Country</h1>
+      <h1>Detailed Country info</h1>
       <form onSubmit={handleGetCountry}>
         {data.length === 0 ? (
           "Data is loading..."
         ) : (
           //   <select>
+          <select onChange={handleContinentChange}>
+            {continent.map((continent, idx) => (
+              <option key={idx} name="continentDropdown" value={continent}>
+                {continent}
+              </option>
+            ))}
+          </select>
+        )}
+        <select onChange={handleDetailedCountryChange}>
+          {data
+            // .filter((countryData) => countryData?.country.includes("A"))
+            // .filter(
+            //   (countryData) => countryData?.continent.includes("Asia")
+            // countryData?.continent === { continentID }
+            // )
+            .map((countryData, idx) => (
+              //   <option key={idx} name="countryDropdown" value={idx}>
+              <option
+                key={idx}
+                name="countryDropdown"
+                value={countryData?.countryInfo?._id}
+              >
+                {countryData?.country}
+              </option>
+            ))}
+        </select>
+        <button>Detailed info with map</button>
+        {/* <button onClick={handleFav}>Add to compare</button> */}
+        <br />
+        {/* <img
+          className="image"
+          width="30%"
+          //   src={countryData[countryID]?.countryInfo?.flag}
+          src={countryData[forDetailedCountryID]?.countryInfo?.flag}
+        ></img> */}
+      </form>
+      <h2>Add Favourites</h2>
+      {/* Add favourites */}
+      {/* <form onSubmit={handleFavouriteChange}> */}
+      <form>
+        {data.length === 0 ? (
+          "Data is loading..."
+        ) : (
+          //   <select>
+
           <select onChange={handleContinentChange}>
             {continent.map((continent, idx) => (
               <option key={idx} name="continentDropdown" value={continent}>
@@ -192,13 +242,14 @@ export default function Comparator({ countryData }) {
               </option>
             ))}
         </select>
-        <button>Detailed info with map</button>
+        {/* <button>Detailed info with map</button> */}
         <button onClick={handleFav}>Add to compare</button>
         <br />
         <img
           className="image"
           width="30%"
           src={countryData[countryID]?.countryInfo?.flag}
+          //   src={countryData[forDetailedCountryID]?.countryInfo?.flag}
         ></img>
       </form>
 

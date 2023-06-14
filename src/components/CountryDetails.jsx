@@ -6,7 +6,7 @@ import GoogleMapReact from "google-map-react";
 export default function CountryDetails({ props }) {
   const [countryList, setCountryList] = useState(props);
   const { id } = useParams();
-  // const idNum = parseInt(id);
+  const idNum = parseInt(id);
   const navigate = useNavigate();
   const AnyReactComponent = ({ text }) => (
     <div
@@ -26,25 +26,27 @@ export default function CountryDetails({ props }) {
     </div>
   );
 
-  const defaultProps = {
-    center: {
-      lat: countryList[id]?.countryInfo?.lat,
-      lng: countryList[id]?.countryInfo?.long,
-    },
-    zoom: 11,
-  };
-
   const handleClick = () => {
     console.log("Click");
     navigate("/comparator");
   };
-  // let country;
-  // for (let i = 0; i < countryList.length; i++) {
-  //   if (countryList[i].id === idNum) {
-  //     country = countryList[i];
-  //     break;
-  //   }
-  // }
+  let country;
+  for (let i = 0; i < countryList?.length; i++) {
+    if (countryList[i]?.countryInfo?._id === idNum) {
+      country = countryList[i];
+      break;
+    }
+  }
+
+  const defaultProps = {
+    center: {
+      // lat: countryList[id]?.countryInfo?.lat,
+      // lng: countryList[id]?.countryInfo?.long,
+      lat: country?.countryInfo?.lat,
+      lng: country?.countryInfo?.long,
+    },
+    zoom: 11,
+  };
 
   return (
     <>
@@ -84,15 +86,42 @@ export default function CountryDetails({ props }) {
           Country
         </NavLink>
       </nav>
+      <p>
+        Details - {id} Component {JSON.stringify(country)}
+      </p>
+      <p>
+        Details - {id} Component {JSON.stringify(countryList.length)}
+      </p>
+
+      <h2>
+        Detail for {country?.country}, {country?.countryInfo?.iso3}
+      </h2>
+      <h3>
+        Coordinates: <br />
+        Latitude: {country?.countryInfo?.lat} Longitude:{" "}
+        {country?.countryInfo?.long}
+      </h3>
+      <img className="image" width="30%" src={country?.countryInfo?.flag}></img>
+      <p>Population: {addCommas(country?.population)}</p>
+      <p>Tests done: {addCommas(country?.tests)}</p>
+      <p>Cases: {addCommas(country?.cases)}</p>
+      <p>Critical: {addCommas(JSON.stringify(country?.critical))}</p>
+      <p>Deaths: {addCommas(country?.deaths)}</p>
+      <p>Recovered: {addCommas(country?.recovered)}</p>
+      <p>Cases per Million: {addCommas(country?.casesPerOneMillion)}</p>
+      <p>Critical per Million: {addCommas(country?.criticalPerOneMillion)}</p>
+      <p>Deaths per Million: {addCommas(country?.deathsPerOneMillion)}</p>
+      <p>Recovered per Million: {addCommas(country?.recoveredPerOneMillion)}</p>
       {/* Main fn here */}
       <br />
       <button onClick={handleClick}>Return</button>
       {/* <h1>ID: {id}</h1> */}
-      <h2>
+
+      {/* <h2>
         Detail for {countryList[id]?.country},{" "}
         {countryList[id]?.countryInfo?.iso3}
-      </h2>
-      <h3>
+      </h2> */}
+      {/* <h3>
         Coordinates: <br />
         Latitude: {countryList[id]?.countryInfo?.lat} Longitude:{" "}
         {countryList[id]?.countryInfo?.long}
@@ -102,9 +131,6 @@ export default function CountryDetails({ props }) {
         width="30%"
         src={countryList[id]?.countryInfo?.flag}
       ></img>
-      {/* <p>
-        Details - {id} Component {JSON.stringify(country)}
-      </p> */}
       <p>Population: {addCommas(countryList[id]?.population)}</p>
       <p>Tests done: {addCommas(countryList[id]?.tests)}</p>
       <p>Cases: {addCommas(countryList[id]?.cases)}</p>
@@ -122,7 +148,7 @@ export default function CountryDetails({ props }) {
       <p>
         Recovered per Million:{" "}
         {addCommas(countryList[id]?.recoveredPerOneMillion)}
-      </p>
+      </p> */}
       <p>{/* Details - {id} Component {JSON.stringify(countryList[id])} */}</p>
       <div style={{ height: "100vh", width: "100%" }}>
         <GoogleMapReact
