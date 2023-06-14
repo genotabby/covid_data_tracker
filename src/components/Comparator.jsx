@@ -67,7 +67,7 @@ export default function Comparator({ countryData }) {
     await response.json();
     // setFavCountries(favCountries?.records?.filter((h) => h.id !== id));
     async function fetchFavourites() {
-      //   await timeout(500);
+      await timeout(500);
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
@@ -127,7 +127,7 @@ export default function Comparator({ countryData }) {
     }
     AddFavourite();
     async function fetchFavourites() {
-      //   await timeout(100);
+      await timeout(500);
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
@@ -293,6 +293,7 @@ export default function Comparator({ countryData }) {
       <fieldset>
         <legend>Compare cases between countries</legend>
         <form onSubmit={handleCompareCountry}>
+          <span>Country 1:</span>
           <select onChange={handleCountry1Change}>
             {data.map((countryData, idx) => (
               <option key={idx} value={idx}>
@@ -301,6 +302,7 @@ export default function Comparator({ countryData }) {
               </option>
             ))}
           </select>
+          <span>Country 2: </span>
           <select onChange={handleCountry2Change}>
             {data.map((countryData, idx) => (
               <option key={idx} value={idx}>
