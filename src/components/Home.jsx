@@ -124,8 +124,6 @@ export default function Home({ props }) {
         <VictoryBar data={data()} x="country" y="cases" />
         {/* <VictoryBar data={data} x="country" y="cases" /> */}
       </VictoryChart>
-      {/* <p>RenderTick:{JSON.stringify(renderTickFormat())}</p> */}
-      {/* <p>County:{JSON.stringify(countryDataToSort[5])}</p> */}
     </>
   );
 }

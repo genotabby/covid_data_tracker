@@ -6,7 +6,7 @@ export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
   const [forDetailedCountryID, setForDetailedCountryID] = useState("SELECT");
   const [countryID, setCountryID] = useState("SELECT");
-  const [continentID, setContinentID] = useState("Australia-Oceania");
+  const [continentID, setContinentID] = useState({});
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
   const [favCountries, setFavCountries] = useState({});
@@ -74,7 +74,7 @@ export default function Comparator({ countryData }) {
     await response.json();
     // setFavCountries(favCountries?.records?.filter((h) => h.id !== id));
     async function fetchFavourites() {
-      await timeout(500);
+      //   await timeout(500);
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
@@ -134,7 +134,7 @@ export default function Comparator({ countryData }) {
     }
     AddFavourite();
     async function fetchFavourites() {
-      await timeout(500);
+      //   await timeout(100);
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
@@ -176,7 +176,7 @@ export default function Comparator({ countryData }) {
       </nav>
       <br />
       <fieldset>
-        <a href="#compare_cases">Jump to Comparisons</a>
+        <a href="#compare_cases">Jump to Direct Comparisons</a>
       </fieldset>
       <h1>Detailed Country info</h1>
       <form onSubmit={handleGetCountry}>
@@ -185,6 +185,7 @@ export default function Comparator({ countryData }) {
         ) : (
           //   <select>
           <select onChange={handleContinentChange}>
+            <option value="select_continent">Select Continent</option>
             {continent.map((continent, idx) => (
               <option key={idx} name="continentDropdown" value={continent}>
                 {continent}
@@ -192,15 +193,14 @@ export default function Comparator({ countryData }) {
             ))}
           </select>
         )}
-        <p>{continentID}</p>
+        {/* <p>{continentID}</p> */}
         <select onChange={handleDetailedCountryChange}>
-          <option value="SELECT">Select country</option>
+          <option value="SELECT">Select Country</option>
           {data
             // .filter((countryData) => countryData?.country.includes("A"))
             .filter(
-              (countryData) => countryData?.continent.includes("Asia")
-              //   (countryData) => countryData?.continent.includes({ continentID })
-              //   countryData?.continent === { continentID }
+              //   (countryData) => countryData?.continent.includes("Asia")
+              (countryData) => countryData?.continent.includes(`${continentID}`)
             )
             .map((countryData, idx) => (
               //   <option key={idx} name="countryDropdown" value={idx}>
