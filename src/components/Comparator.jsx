@@ -5,6 +5,9 @@ import continent from "../Data/continentList";
 
 export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
+  const [login, setLogin] = useState("");
+  //   const [APIKey, setAPIKey] = useState("keyU9luii8dEwEdfH");
+  const [APIKey, setAPIKey] = useState("");
   const [forDetailedCountryID, setForDetailedCountryID] = useState("SELECT");
   //   const [countryID, setCountryID] = useState("SELECT");
   const [continentID, setContinentID] = useState("");
@@ -12,11 +15,40 @@ export default function Comparator({ countryData }) {
   const [compareCountryID2, setCompareCountryID2] = useState("0");
   const [favCountries, setFavCountries] = useState({});
   const navigate = useNavigate();
-
   //   const handleChange = (event) => {
   //     setCountryID(event.target.value);
   //     console.log("handleChange", event.target.value);
   //   };
+
+  const handleChange = (event) => {
+    setLogin(event.target.value);
+    console.log("handleChange", event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // somehow setAPIKey is not puttin login value on 1st try
+    setAPIKey(login);
+    console.log("login", login);
+    console.log("APIKEY", APIKey);
+    console.log("LoginClicked!");
+
+    async function fetchFavourites() {
+      await timeout(500);
+      const response = await fetch(
+        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+        {
+          headers: {
+            Authorization: `Bearer ${APIKey}`,
+          },
+        }
+      );
+      const jsonData = await response.json();
+      setFavCountries(jsonData);
+    }
+    fetchFavourites();
+  };
+
   const handleDetailedCountryChange = (event) => {
     setForDetailedCountryID(event.target.value);
     console.log("handleFavouriteChange", event.target.value);
@@ -59,19 +91,19 @@ export default function Comparator({ countryData }) {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer keyU9luii8dEwEdfH",
+          Authorization: `Bearer ${APIKey}`,
         },
       }
     );
     await response.json();
-    // setFavCountries(favCountries?.records?.filter((h) => h.id !== id));
+
     async function fetchFavourites() {
       await timeout(500);
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
-            Authorization: "Bearer keyU9luii8dEwEdfH",
+            Authorization: `Bearer ${APIKey}`,
           },
         }
       );
@@ -120,21 +152,21 @@ export default function Comparator({ countryData }) {
     );
   }
 
-  useEffect(() => {
-    async function fetchFavourites() {
-      const response = await fetch(
-        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
-        {
-          headers: {
-            Authorization: "Bearer keyU9luii8dEwEdfH",
-          },
-        }
-      );
-      const jsonData = await response.json();
-      setFavCountries(jsonData);
-    }
-    fetchFavourites();
-  }, []);
+  //   useEffect(() => {
+  //     async function fetchFavourites() {
+  //       const response = await fetch(
+  //         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${APIKey}`,
+  //           },
+  //         }
+  //       );
+  //       const jsonData = await response.json();
+  //       setFavCountries(jsonData);
+  //     }
+  //     fetchFavourites();
+  //   }, []);
 
   const handleFav = (event) => {
     event.preventDefault();
@@ -153,7 +185,7 @@ export default function Comparator({ countryData }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer keyU9luii8dEwEdfH",
+            Authorization: `Bearer ${APIKey}`,
           },
           //   body: `{"records":[{"fields":{"country":"${data[countryID].country}","ID":${countryID}}}]}`,
           body: `{"records":[{"fields":{"ID":${forDetailedCountryID}}}]}`,
@@ -168,7 +200,7 @@ export default function Comparator({ countryData }) {
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
-            Authorization: "Bearer keyU9luii8dEwEdfH",
+            Authorization: `Bearer ${APIKey}`,
           },
         }
       );
@@ -208,6 +240,21 @@ export default function Comparator({ countryData }) {
       <fieldset>
         <a href="#compare_cases">Jump to Direct Comparisons</a>
       </fieldset>
+
+      <form onSubmit={handleSubmit}>
+        <label>
+          Login:{""}
+          <input
+            name="login"
+            value={login}
+            type="password"
+            pattern="key.{14}"
+            onChange={handleChange}
+          ></input>
+          <button>Login</button>
+        </label>
+      </form>
+
       <h1>Detailed Country info</h1>
       <form onSubmit={handleGetCountry}>
         {data.length === 0 ? (
@@ -309,7 +356,7 @@ export default function Comparator({ countryData }) {
 
       <a id="compare_cases" />
       <fieldset>
-        <legend>Compare cases between countries</legend>
+        <legend>Directly compare cases between countries</legend>
         <form onSubmit={handleCompareCountry}>
           <span>Country 1:</span>
           <select onChange={handleCountry1Change}>

@@ -14,6 +14,8 @@ export default function Comparator({ countryData }) {
   const [favCountries, setFavCountries] = useState({});
   const navigate = useNavigate();
 
+  const APIKey = "keyU9luii8dEwEdfH";
+
   const handleChange = (event) => {
     setCountryID(event.target.value);
     console.log("handleChange", event.target.value);
@@ -60,7 +62,8 @@ export default function Comparator({ countryData }) {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer keyU9luii8dEwEdfH",
+          // Authorization: "Bearer keyU9luii8dEwEdfH",
+          Authorization: `Bearer ${APIKey}`,
         },
       }
     );
@@ -72,7 +75,7 @@ export default function Comparator({ countryData }) {
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
-            Authorization: "Bearer keyU9luii8dEwEdfH",
+            Authorization: `Bearer ${APIKey}`,
           },
         }
       );
@@ -97,7 +100,7 @@ export default function Comparator({ countryData }) {
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
-            Authorization: "Bearer keyU9luii8dEwEdfH",
+            Authorization: `Bearer ${APIKey}`,
           },
         }
       );
@@ -122,7 +125,7 @@ export default function Comparator({ countryData }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer keyU9luii8dEwEdfH",
+            Authorization: `Bearer ${APIKey}`,
           },
           body: `{"records":[{"fields":{"country":"${data[countryID].country}","ID":${countryID}}}]}`,
         }
@@ -136,7 +139,7 @@ export default function Comparator({ countryData }) {
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
-            Authorization: "Bearer keyU9luii8dEwEdfH",
+            Authorization: `Bearer ${APIKey}`,
           },
         }
       );
@@ -302,7 +305,7 @@ export default function Comparator({ countryData }) {
 
       <a id="compare_cases" />
       <fieldset>
-        <legend>Compare cases between countries</legend>
+        <legend>Directly compare cases between countries</legend>
         <form onSubmit={handleCompareCountry}>
           <span>Country 1:</span>
           <select onChange={handleCountry1Change}>

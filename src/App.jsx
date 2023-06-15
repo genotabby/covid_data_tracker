@@ -14,11 +14,11 @@ import CountryDetails from "./components/CountryDetails";
 //* async -> keyword -> just a function marker -> allows use of await
 
 function App() {
-  const [result, setResult] = useState({});
+  // const [result, setResult] = useState({});
   const [globalData, setGlobalData] = useState([]);
   const [countryData, setCountryData] = useState([]);
 
-  const [population, setPopulation] = useState([]);
+  // const [population, setPopulation] = useState([]);
 
   useEffect(() => {
     async function getCategories() {
