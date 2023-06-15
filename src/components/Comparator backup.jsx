@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import addCommas from "../functions/addCommas";
+// import ComparatorBreadcrumb from "./BreadCrumbs/ComparatorBreadcrumb";
 import continent from "../Data/continentList";
 
 export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
   const [forDetailedCountryID, setForDetailedCountryID] = useState("SELECT");
-  //   const [countryID, setCountryID] = useState("SELECT");
-  const [continentID, setContinentID] = useState("");
+  const [countryID, setCountryID] = useState("SELECT");
+  const [continentID, setContinentID] = useState({});
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
   const [favCountries, setFavCountries] = useState({});
   const navigate = useNavigate();
 
-  //   const handleChange = (event) => {
-  //     setCountryID(event.target.value);
-  //     console.log("handleChange", event.target.value);
-  //   };
+  const handleChange = (event) => {
+    setCountryID(event.target.value);
+    console.log("handleChange", event.target.value);
+  };
   const handleDetailedCountryChange = (event) => {
     setForDetailedCountryID(event.target.value);
     console.log("handleFavouriteChange", event.target.value);
@@ -87,37 +88,7 @@ export default function Comparator({ countryData }) {
   }
 
   function matchID(fetchedCountryData) {
-    let country_value = 0;
-    for (let i = 0; i < data.length; i++) {
-      if (fetchedCountryData?.fields?.ID === data[i]?.countryInfo?._id) {
-        // console.log("data_id", data[i].countryInfo._id);
-        // console.log("data_value", data[i]);
-        country_value = data[i];
-      }
-    }
-    return (
-      <>
-        <td>
-          <img
-            className="image"
-            width="30%"
-            src={country_value?.countryInfo?.flag}
-          ></img>{" "}
-          {country_value?.country}
-        </td>
-        <td>{addCommas(country_value?.cases)}</td>
-        <td>{addCommas(country_value?.deaths)}</td>
-        <td>{addCommas(country_value?.active)}</td>
-        <td>{addCommas(country_value?.casesPerOneMillion)}</td>
-        <td>{addCommas(country_value?.deathsPerOneMillion)}</td>
-        <td>{addCommas(country_value?.population)}</td>
-        <td>
-          <button onClick={() => handleDelete(fetchedCountryData?.id)}>
-            🗑️
-          </button>
-        </td>
-      </>
-    );
+    console.log("matchID", fetchedCountryData);
   }
 
   useEffect(() => {
@@ -138,11 +109,9 @@ export default function Comparator({ countryData }) {
 
   const handleFav = (event) => {
     event.preventDefault();
-    // console.log("Set as Favourite", data[countryID]);
-    // console.log("countryID", countryID);
-    // console.log("countryID", countryID);
-    console.log("countryID", forDetailedCountryID);
-    if (forDetailedCountryID === "SELECT") {
+    console.log("Set as Favourite", data[countryID]);
+    console.log("countryID", countryID);
+    if (countryID === "SELECT") {
       console.log("No Country Selected!");
       return;
     }
@@ -155,8 +124,7 @@ export default function Comparator({ countryData }) {
             "Content-Type": "application/json",
             Authorization: "Bearer keyU9luii8dEwEdfH",
           },
-          //   body: `{"records":[{"fields":{"country":"${data[countryID].country}","ID":${countryID}}}]}`,
-          body: `{"records":[{"fields":{"ID":${forDetailedCountryID}}}]}`,
+          body: `{"records":[{"fields":{"country":"${data[countryID].country}","ID":${countryID}}}]}`,
         }
       );
       await response.json();
@@ -227,6 +195,7 @@ export default function Comparator({ countryData }) {
         <select onChange={handleDetailedCountryChange}>
           <option value="SELECT">Select Country</option>
           {data
+            // .filter((countryData) => countryData?.country.includes("A"))
             .filter(
               //   (countryData) => countryData?.continent.includes("Asia")
               (countryData) => countryData?.continent.includes(`${continentID}`)
@@ -239,21 +208,45 @@ export default function Comparator({ countryData }) {
                 value={countryData?.countryInfo?._id}
               >
                 {countryData?.country}
-                {/* <img>{countryData?.countryInfo?.flag}</img> */}
-
-                {/* <img
-                  className="image"
-                  width="25%"
-                  src={countryData?.country_info?.flag}
-                ></img> */}
               </option>
             ))}
         </select>
         <button>Detailed info with map</button>
-        <button onClick={handleFav}>Add to compare</button>
+        {/* <button onClick={handleFav}>Add to compare</button> */}
         <br />
       </form>
       <h2>Add Favourites</h2>
+
+      <form>
+        <select onChange={handleChange}>
+          <option value="SELECT">Select country</option>
+          {data
+            // .filter((countryData) => countryData?.country.includes("A"))
+            // .filter
+            //   (countryData) => countryData?.continent.includes("Asia")
+            // countryData?.continent === { continentID }
+            .map((countryData, idx) => (
+              //   CHANGES HERE
+              // <option key={idx} name="countryDropdown" value={idx}>
+              <option
+                key={idx}
+                name="countryDropdown"
+                value={countryData?.countryInfo?._id}
+              >
+                {countryData?.country}
+              </option>
+            ))}
+        </select>
+        {/* <button>Detailed info with map</button> */}
+        {/* <button onClick={handleFav}>Add to compare</button> */}
+        <br />
+        <img
+          className="image"
+          width="30%"
+          src={countryData[countryID]?.countryInfo?.flag}
+          //   src={countryData[forDetailedCountryID]?.countryInfo?.flag}
+        ></img>
+      </form>
 
       <table border="1">
         <caption>Favourites</caption>
@@ -273,7 +266,7 @@ export default function Comparator({ countryData }) {
           {favCountries?.records?.map((fetchedCountryData, idx) => (
             <tr key={idx}>
               {matchID(fetchedCountryData)}
-              {/* <td>
+              <td>
                 <img
                   className="image"
                   width="30%"
@@ -301,7 +294,7 @@ export default function Comparator({ countryData }) {
                 <button onClick={() => handleDelete(fetchedCountryData?.id)}>
                   🗑️
                 </button>
-              </td> */}
+              </td>
             </tr>
           ))}
         </tbody>
