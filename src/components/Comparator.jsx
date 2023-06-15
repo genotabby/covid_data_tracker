@@ -314,10 +314,10 @@ export default function Comparator({ countryData }) {
         <button onClick={handleFav}>Add to compare</button>
         <br />
       </form>
-      <h2>Add Favourites</h2>
+      {/* <h2>Add Favourites</h2> */}
 
       <table border="1">
-        <caption>Favourites</caption>
+        <caption>Personal List</caption>
         <thead>
           <tr>
             <th>Country</th>
