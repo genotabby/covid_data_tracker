@@ -29,3 +29,7 @@ header a:hover {
 html {
   scroll-behavior: smooth;
 }
+
+.red {
+  color: red;
+}

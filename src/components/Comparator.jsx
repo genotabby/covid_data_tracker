@@ -6,7 +6,6 @@ import continent from "../Data/continentList";
 export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
   const [login, setLogin] = useState("");
-  //   const [APIKey, setAPIKey] = useState("keyU9luii8dEwEdfH");
   const [APIKey, setAPIKey] = useState("");
   const [forDetailedCountryID, setForDetailedCountryID] = useState("SELECT");
   //   const [countryID, setCountryID] = useState("SELECT");
@@ -243,7 +242,7 @@ export default function Comparator({ countryData }) {
 
       <form onSubmit={handleSubmit}>
         <label>
-          Login:{""}
+          Login to save favourites:{""}
           <input
             name="login"
             value={login}
@@ -252,6 +251,9 @@ export default function Comparator({ countryData }) {
             onChange={handleChange}
           ></input>
           <button>Login</button>
+          <small className="red">Password must be 17 digits long</small>
+          <br />
+          <small>Sample code: keyU9luii8dEwEdfH</small>
         </label>
       </form>
 
