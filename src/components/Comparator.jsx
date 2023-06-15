@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import addCommas from "../functions/addCommas";
 import continent from "../Data/continentList";
+// import classes from "../styles/edit.comparator.css";
 
 export default function Comparator({ countryData }) {
   const [data, setData] = useState(countryData);
-  const [login, setLogin] = useState("");
+  const [loginUsername, setLoginUsername] = useState("");
+  const [loginKey, setLoginKey] = useState("");
+  const [APIUser, setAPIUser] = useState("user1");
   const [APIKey, setAPIKey] = useState("");
   const [forDetailedCountryID, setForDetailedCountryID] = useState("SELECT");
-  //   const [countryID, setCountryID] = useState("SELECT");
   const [continentID, setContinentID] = useState("");
   const [compareCountryID1, setCompareCountryID1] = useState("0");
   const [compareCountryID2, setCompareCountryID2] = useState("0");
@@ -19,45 +21,19 @@ export default function Comparator({ countryData }) {
   //     console.log("handleChange", event.target.value);
   //   };
 
+  const handleUsernameChange = (event) => {
+    setLoginUsername(event.target.value);
+    setAPIUser(event.target.value);
+    // This works but is probably wrong because this is updating the state once then twice later
+    console.log("handleUsernameChange", event.target.value);
+  };
+
   const handleChange = (event) => {
-    setLogin(event.target.value);
-    // setAPIKey(event.target.value);
+    setLoginKey(event.target.value);
     // This works but is probably wrong because this is updating the state once then twice later
     setAPIKey(event.target.value);
     console.log("changeApikey", APIKey);
     console.log("handleChange", event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // somehow setAPIKey is not putting login value on 1st try
-    // Clicking the button is 1 updated APIKey value behind
-    console.log("loginBefore", login);
-    console.log("APIKEYBefore", APIKey);
-    // setAPIKey(login);
-    console.log("loginAfter", login);
-    console.log("APIKEYAfter", APIKey);
-    console.log("LoginClicked!");
-
-    async function fetchFavourites() {
-      await timeout(500);
-      // try {
-      const response = await fetch(
-        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
-        {
-          headers: {
-            Authorization: `Bearer ${APIKey}`,
-          },
-        }
-      );
-
-      // } catch (error) {
-      //   console.log("error!");
-      // }
-      const jsonData = await response.json();
-      setFavCountries(jsonData);
-    }
-    fetchFavourites();
   };
 
   const handleDetailedCountryChange = (event) => {
@@ -93,11 +69,46 @@ export default function Comparator({ countryData }) {
     }
     navigate(`/comparator/country/${forDetailedCountryID}`);
   };
+  //   Execute on login
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // somehow setAPIKey is not putting login value on 1st try
+    // Clicking the button is 1 updated APIKey value behind
+    console.log("loginBefore", loginKey);
+    console.log("APIKEYBefore", APIKey);
+    // setAPIKey(login);
+    console.log("loginAfter", loginKey);
+    console.log("APIKEYAfter", APIKey);
+    console.log("LoginClicked!");
 
+    async function fetchFavourites() {
+      await timeout(500);
+      // try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/`,
+        // `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+        {
+          headers: {
+            Authorization: `Bearer ${APIKey}`,
+          },
+        }
+      );
+
+      // } catch (error) {
+      //   console.log("error!");
+      // }
+      const jsonData = await response.json();
+      setFavCountries(jsonData);
+    }
+    fetchFavourites();
+  };
+
+  // Execute on Delete button
   async function handleDelete(id) {
     console.log("DELETE!", id);
     const response = await fetch(
-      `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/${id}`,
+      `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/${id}`,
+      //   `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -111,7 +122,8 @@ export default function Comparator({ countryData }) {
     async function fetchFavourites() {
       await timeout(500);
       const response = await fetch(
-        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/`,
+        // `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
             Authorization: `Bearer ${APIKey}`,
@@ -140,7 +152,7 @@ export default function Comparator({ countryData }) {
     }
     return (
       <>
-        <td>
+        <td className="fav_th">
           <img
             className="image"
             width="30%"
@@ -148,13 +160,23 @@ export default function Comparator({ countryData }) {
           ></img>{" "}
           {country_value?.country}
         </td>
-        <td>{addCommas(country_value?.cases)}</td>
-        <td>{addCommas(country_value?.deaths)}</td>
-        <td>{addCommas(country_value?.active)}</td>
-        <td>{addCommas(country_value?.casesPerOneMillion)}</td>
-        <td>{addCommas(country_value?.deathsPerOneMillion)}</td>
-        <td>{addCommas(country_value?.population)}</td>
-        <td>
+        <td className="fav_th">{addCommas(country_value?.cases)}</td>
+        <td className="fav_th">{addCommas(country_value?.deaths)}</td>
+        <td className="fav_th">{addCommas(country_value?.recovered)}</td>
+        <td className="fav_th">{addCommas(country_value?.active)}</td>
+        <td className="fav_th">{addCommas(country_value?.critical)}</td>
+        <td className="fav_th">
+          {addCommas(country_value?.casesPerOneMillion)}
+        </td>
+        <td className="fav_th">
+          {addCommas(country_value?.deathsPerOneMillion)}
+        </td>
+        <td className="fav_th">{addCommas(country_value?.tests)}</td>
+        <td className="fav_th">
+          {addCommas(country_value?.testsPerOneMillion)}
+        </td>
+        <td className="fav_th">{addCommas(country_value?.population)}</td>
+        <td className="fav_th">
           <button onClick={() => handleDelete(fetchedCountryData?.id)}>
             🗑️
           </button>
@@ -191,7 +213,8 @@ export default function Comparator({ countryData }) {
     }
     async function AddFavourite() {
       const response = await fetch(
-        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/`,
+        // `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           method: "POST",
           headers: {
@@ -208,7 +231,8 @@ export default function Comparator({ countryData }) {
     async function fetchFavourites() {
       await timeout(500);
       const response = await fetch(
-        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
+        `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/`,
+        // `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
             Authorization: `Bearer ${APIKey}`,
@@ -253,21 +277,32 @@ export default function Comparator({ countryData }) {
       </fieldset>
 
       <form onSubmit={handleSubmit}>
-        {/* <form> */}
         <label>
-          Login to save favourites:{""}
+          Username:
           <input
-            name="login"
-            value={login}
+            name="username"
+            value={loginUsername}
+            type="text"
+            onChange={handleUsernameChange}
+          ></input>
+          <br />
+        </label>
+        <label>
+          Password:{""}
+          <input
+            name="pwd"
+            value={loginKey}
             type="password"
             pattern="key.{14}"
             onChange={handleChange}
           ></input>
-          <button>Login</button>
-          <small className="red">Password must be 17 digits long</small>
-          <br />
-          <small>Sample code: keyU9luii8dEwEdfH</small>
         </label>
+        <button>Login</button>
+        <small className="red">Password must be 17 digits long</small>
+        <br />
+        <small>Sample username: user1, user2</small>
+        <br />
+        <small>Sample code: keyU9luii8dEwEdfH</small>
       </form>
 
       <h1>Detailed Country info</h1>
@@ -320,14 +355,18 @@ export default function Comparator({ countryData }) {
         <caption>Personal List</caption>
         <thead>
           <tr>
-            <th>Country</th>
-            <th>Cases</th>
-            <th>Deaths</th>
-            <th>Active</th>
-            <th>Cases/M</th>
-            <th>Deaths/M</th>
-            <th>Population</th>
-            <th>Actions</th>
+            <th className="fav_th">Country</th>
+            <th className="fav_th">Cases</th>
+            <th className="fav_th">Deaths</th>
+            <th className="fav_th">Recovered</th>
+            <th className="fav_th">Active</th>
+            <th className="fav_th">Serious, Critical</th>
+            <th className="fav_th">Cases/1M</th>
+            <th className="fav_th">Deaths/1M</th>
+            <th className="fav_th">Total Tests</th>
+            <th className="fav_th">Tests /1M</th>
+            <th className="fav_th">Population</th>
+            <th className="fav_th">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -381,6 +420,7 @@ export default function Comparator({ countryData }) {
               </option>
             ))}
           </select>
+
           <span>Country 2: </span>
           <select onChange={handleCountry2Change}>
             {data.map((countryData, idx) => (
@@ -390,37 +430,108 @@ export default function Comparator({ countryData }) {
               </option>
             ))}
           </select>
-          {/* <button>Compare!</button> */}
         </form>
       </fieldset>
-      <p>Country 1: {data[compareCountryID1]?.country}</p>
-      <p>Country 1 cases: {addCommas(data[compareCountryID1]?.cases)}</p>
-      <p>
-        Country 1 cases/M:{" "}
-        {addCommas(data[compareCountryID1]?.casesPerOneMillion)}
-      </p>
+      <br />
       <img
-        className="image"
-        width="25%"
+        // className={classes.countryImage}
+        width="200"
+        height="100"
         src={countryData[compareCountryID1]?.countryInfo?.flag}
+        alt="country1 flag"
       ></img>
-      <p>Country 2: {data[compareCountryID2]?.country}</p>
-      <p>Country 2 cases: {addCommas(data[compareCountryID2]?.cases)}</p>
-      <p>
-        Country 2 cases/M:{" "}
-        {addCommas(data[compareCountryID2]?.casesPerOneMillion)}
-      </p>
+      <> </>
       <img
+        width="200"
+        height="100"
         className="image"
-        width="25%"
         src={countryData[compareCountryID2]?.countryInfo?.flag}
+        alt="country2 flag"
       ></img>
       <br></br>
-      {/* {favCountries?.records?.map((fetchedCountryData, idx) => (
-        <p key={idx}>
-          {fetchedCountryData?.fields?.country},{fetchedCountryData?.fields?.ID}
-        </p>
-      ))} */}
+
+      <br />
+      <table>
+        <tr className="single-row_tr">
+          <th className="single-row_th">Country</th>
+          <th className="single-row_th">Cases</th>
+          <th className="single-row_th">Deaths</th>
+          <th className="single-row_th">Recovered</th>
+          <th className="single-row_th">Active Cases</th>
+          <th className="single-row_th">Serious, Critical</th>
+          <th className="single-row_th">Cases/ 1M pop</th>
+          <th className="single-row_th">Deaths/ 1M pop</th>
+          <th className="single-row_th">Total Tests</th>
+          <th className="single-row_th">Tests/ 1M pop</th>
+          <th className="single-row_th">Population</th>
+        </tr>
+        <tr className="single-row_tr">
+          <td className="single-row_td">{data[compareCountryID1]?.country}</td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.cases)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.deaths)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.recovered)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.active)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.critical)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.casesPerOneMillion)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.deathsPerOneMillion)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.tests)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.testsPerOneMillion)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID1]?.population)}
+          </td>
+        </tr>
+        <tr className="single-row_tr">
+          <td className="single-row_td">{data[compareCountryID2]?.country}</td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.cases)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.deaths)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.recovered)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.active)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.critical)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.casesPerOneMillion)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.deathsPerOneMillion)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.tests)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.testsPerOneMillion)}
+          </td>
+          <td className="single-row_td">
+            {addCommas(data[compareCountryID2]?.population)}
+          </td>
+        </tr>
+      </table>
     </>
   );
 }

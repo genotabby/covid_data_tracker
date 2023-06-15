@@ -10,12 +10,12 @@ import {
 
 const axisStyle = {
   tickLabels: {
-    fontSize: 10,
+    fontSize: 8,
     // angle: 45,
   },
   axisLabel: {
     padding: 39,
-    fontSize: 10,
+    fontSize: 8,
     fontStyle: "italic",
   },
 };
@@ -85,19 +85,23 @@ export default function Home({ props }) {
 
       <button onClick={handleClick}>view by country</button>
 
-      {/* <p>TODOS: To insert top 10 cases chart here</p> */}
-
       <VictoryChart
         // domainPadding will add space to each side of VictoryBar to
         // prevent it from overlapping the axis
         theme={VictoryTheme.material}
         domainPadding={10}
+        height={200}
+        width={300}
       >
         <VictoryLabel
-          x={175}
+          x={150}
           y={25}
           textAnchor="middle"
           text="Top 10 by Cases per million"
+          style={{
+            // tickLabels: { angle: 45, padding: 10, fontSize: 8 },
+            fontSize: 9,
+          }}
         />
 
         <VictoryAxis
@@ -108,8 +112,8 @@ export default function Home({ props }) {
           tickFormat={renderTickFormat()}
           //   style={axisStyle}
           style={{
-            tickLabels: { angle: 45, padding: 10, fontSize: 10 },
-            fontSize: 100,
+            tickLabels: { angle: 45, padding: 10, fontSize: 8 },
+            // fontSize: 100,
           }}
         />
         <VictoryAxis

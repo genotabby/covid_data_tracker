@@ -33,3 +33,25 @@ html {
 .red {
   color: red;
 }
+
+/* single-row column design */
+.single-row_tr {
+  display: block;
+  float: left;
+}
+.single-row_th,
+.single-row_td {
+  display: block;
+  border: 1px solid black;
+}
+
+.fav_th,
+.fav_td {
+  border: 1px solid black;
+}
+/* border-collapse tr > *:not(:first-child) {
+  border-top: 0;
+}
+tr:not(:first-child) > * {
+  border-left: 0;
+} */
