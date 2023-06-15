@@ -60,8 +60,8 @@ or log in and save their preferences
 ## Details page
 You can filter the countries by continent
 
-![](https://i.imgur.com/LBdI7HW.png)
+![](https://i.imgur.com/wFy5BuZ.png)
 
 and click Detailed info to get the full data list including map coordinates and a map to see the country and the neighbouring regions
 
-![](https://i.imgur.com/wFy5BuZ.png)
+![](https://i.imgur.com/LBdI7HW.png)
