@@ -41,8 +41,6 @@ export default function CountryDetails({ props }) {
 
   const defaultProps = {
     center: {
-      // lat: countryList[id]?.countryInfo?.lat,
-      // lng: countryList[id]?.countryInfo?.long,
       lat: country?.countryInfo?.lat,
       lng: country?.countryInfo?.long,
     },
@@ -91,13 +89,6 @@ export default function CountryDetails({ props }) {
       <br />
       <button onClick={handleClick}>Return</button>
 
-      {/* <p>
-        Details - {id} Component {JSON.stringify(country)}
-      </p>
-      <p>
-        Details - {id} Component {JSON.stringify(countryList.length)}
-      </p> */}
-
       <h2>
         Detail for {country?.country}, {country?.countryInfo?.iso3}
       </h2>
@@ -106,7 +97,12 @@ export default function CountryDetails({ props }) {
         Latitude: {country?.countryInfo?.lat} Longitude:{" "}
         {country?.countryInfo?.long}
       </h3>
-      <img className="image" width="30%" src={country?.countryInfo?.flag}></img>
+      <img
+        width="200"
+        height="100"
+        className="image"
+        src={country?.countryInfo?.flag}
+      ></img>
       <p>Population: {addCommas(country?.population)}</p>
       <p>Tests done: {addCommas(country?.tests)}</p>
       <p>Cases: {addCommas(country?.cases)}</p>
@@ -118,44 +114,9 @@ export default function CountryDetails({ props }) {
       <p>Deaths per Million: {addCommas(country?.deathsPerOneMillion)}</p>
       <p>Recovered per Million: {addCommas(country?.recoveredPerOneMillion)}</p>
       {/* Main fn here */}
-      <br />
-      {/* <button onClick={handleClick}>Return</button> */}
-      {/* <h1>ID: {id}</h1> */}
 
-      {/* <h2>
-        Detail for {countryList[id]?.country},{" "}
-        {countryList[id]?.countryInfo?.iso3}
-      </h2> */}
-      {/* <h3>
-        Coordinates: <br />
-        Latitude: {countryList[id]?.countryInfo?.lat} Longitude:{" "}
-        {countryList[id]?.countryInfo?.long}
-      </h3>
-      <img
-        className="image"
-        width="30%"
-        src={countryList[id]?.countryInfo?.flag}
-      ></img>
-      <p>Population: {addCommas(countryList[id]?.population)}</p>
-      <p>Tests done: {addCommas(countryList[id]?.tests)}</p>
-      <p>Cases: {addCommas(countryList[id]?.cases)}</p>
-      <p>Critical: {addCommas(JSON.stringify(countryList[id]?.critical))}</p>
-      <p>Deaths: {addCommas(countryList[id]?.deaths)}</p>
-      <p>Recovered: {addCommas(countryList[id]?.recovered)}</p>
-      <p>Cases per Million: {addCommas(countryList[id]?.casesPerOneMillion)}</p>
-      <p>
-        Critical per Million:{" "}
-        {addCommas(countryList[id]?.criticalPerOneMillion)}
-      </p>
-      <p>
-        Deaths per Million: {addCommas(countryList[id]?.deathsPerOneMillion)}
-      </p>
-      <p>
-        Recovered per Million:{" "}
-        {addCommas(countryList[id]?.recoveredPerOneMillion)}
-      </p> */}
       <p>{/* Details - {id} Component {JSON.stringify(countryList[id])} */}</p>
-      <div style={{ height: "100vh", width: "100%" }}>
+      <div style={{ height: "50vh", width: "80%" }}>
         <GoogleMapReact
           // bootstrapURLKeys={{ key: "" }}
           defaultCenter={defaultProps.center}

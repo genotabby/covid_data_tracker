@@ -426,7 +426,6 @@ export default function Comparator({ countryData }) {
             {data.map((countryData, idx) => (
               <option key={idx} value={idx}>
                 {countryData.country}
-                {/* {countryData.Province_State || countryData.Country_Region} */}
               </option>
             ))}
           </select>
@@ -434,7 +433,6 @@ export default function Comparator({ countryData }) {
       </fieldset>
       <br />
       <img
-        // className={classes.countryImage}
         width="200"
         height="100"
         src={countryData[compareCountryID1]?.countryInfo?.flag}
@@ -452,85 +450,91 @@ export default function Comparator({ countryData }) {
 
       <br />
       <table>
-        <tr className="single-row_tr">
-          <th className="single-row_th">Country</th>
-          <th className="single-row_th">Cases</th>
-          <th className="single-row_th">Deaths</th>
-          <th className="single-row_th">Recovered</th>
-          <th className="single-row_th">Active Cases</th>
-          <th className="single-row_th">Serious, Critical</th>
-          <th className="single-row_th">Cases/ 1M pop</th>
-          <th className="single-row_th">Deaths/ 1M pop</th>
-          <th className="single-row_th">Total Tests</th>
-          <th className="single-row_th">Tests/ 1M pop</th>
-          <th className="single-row_th">Population</th>
-        </tr>
-        <tr className="single-row_tr">
-          <td className="single-row_td">{data[compareCountryID1]?.country}</td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.cases)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.deaths)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.recovered)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.active)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.critical)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.casesPerOneMillion)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.deathsPerOneMillion)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.tests)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.testsPerOneMillion)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID1]?.population)}
-          </td>
-        </tr>
-        <tr className="single-row_tr">
-          <td className="single-row_td">{data[compareCountryID2]?.country}</td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.cases)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.deaths)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.recovered)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.active)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.critical)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.casesPerOneMillion)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.deathsPerOneMillion)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.tests)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.testsPerOneMillion)}
-          </td>
-          <td className="single-row_td">
-            {addCommas(data[compareCountryID2]?.population)}
-          </td>
-        </tr>
+        <tbody>
+          <tr className="single-row_tr">
+            <th className="single-row_th">Country</th>
+            <th className="single-row_th">Cases</th>
+            <th className="single-row_th">Deaths</th>
+            <th className="single-row_th">Recovered</th>
+            <th className="single-row_th">Active Cases</th>
+            <th className="single-row_th">Serious, Critical</th>
+            <th className="single-row_th">Cases/ 1M pop</th>
+            <th className="single-row_th">Deaths/ 1M pop</th>
+            <th className="single-row_th">Total Tests</th>
+            <th className="single-row_th">Tests/ 1M pop</th>
+            <th className="single-row_th">Population</th>
+          </tr>
+          <tr className="single-row_tr">
+            <td className="single-row_td">
+              {data[compareCountryID1]?.country}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.cases)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.deaths)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.recovered)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.active)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.critical)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.casesPerOneMillion)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.deathsPerOneMillion)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.tests)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.testsPerOneMillion)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID1]?.population)}
+            </td>
+          </tr>
+          <tr className="single-row_tr">
+            <td className="single-row_td">
+              {data[compareCountryID2]?.country}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.cases)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.deaths)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.recovered)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.active)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.critical)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.casesPerOneMillion)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.deathsPerOneMillion)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.tests)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.testsPerOneMillion)}
+            </td>
+            <td className="single-row_td">
+              {addCommas(data[compareCountryID2]?.population)}
+            </td>
+          </tr>
+        </tbody>
       </table>
     </>
   );
