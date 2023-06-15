@@ -21,19 +21,27 @@ export default function Comparator({ countryData }) {
 
   const handleChange = (event) => {
     setLogin(event.target.value);
+    // setAPIKey(event.target.value);
+    // This works but is probably wrong because this is updating the state once then twice later
+    setAPIKey(event.target.value);
+    console.log("changeApikey", APIKey);
     console.log("handleChange", event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // somehow setAPIKey is not puttin login value on 1st try
-    setAPIKey(login);
-    console.log("login", login);
-    console.log("APIKEY", APIKey);
+    // somehow setAPIKey is not putting login value on 1st try
+    // Clicking the button is 1 updated APIKey value behind
+    console.log("loginBefore", login);
+    console.log("APIKEYBefore", APIKey);
+    // setAPIKey(login);
+    console.log("loginAfter", login);
+    console.log("APIKEYAfter", APIKey);
     console.log("LoginClicked!");
 
     async function fetchFavourites() {
       await timeout(500);
+      // try {
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
@@ -42,6 +50,10 @@ export default function Comparator({ countryData }) {
           },
         }
       );
+
+      // } catch (error) {
+      //   console.log("error!");
+      // }
       const jsonData = await response.json();
       setFavCountries(jsonData);
     }
@@ -241,6 +253,7 @@ export default function Comparator({ countryData }) {
       </fieldset>
 
       <form onSubmit={handleSubmit}>
+        {/* <form> */}
         <label>
           Login to save favourites:{""}
           <input
@@ -262,7 +275,6 @@ export default function Comparator({ countryData }) {
         {data.length === 0 ? (
           "Data is loading..."
         ) : (
-          //   <select>
           <select onChange={handleContinentChange}>
             <option value="select_continent">Select Continent</option>
             {continent.map((continent, idx) => (
