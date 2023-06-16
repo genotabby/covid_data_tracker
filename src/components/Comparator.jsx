@@ -81,7 +81,6 @@ export default function Comparator({ countryData }) {
       // try {
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/`,
-        // `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
             Authorization: `Bearer ${APIKey}`,
@@ -103,7 +102,6 @@ export default function Comparator({ countryData }) {
     console.log("DELETE!", id);
     const response = await fetch(
       `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/${id}`,
-      //   `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -118,7 +116,6 @@ export default function Comparator({ countryData }) {
       await timeout(500);
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/`,
-        // `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
             Authorization: `Bearer ${APIKey}`,
@@ -188,14 +185,12 @@ export default function Comparator({ countryData }) {
     async function AddFavourite() {
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/`,
-        // `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${APIKey}`,
           },
-          //   body: `{"records":[{"fields":{"country":"${data[countryID].country}","ID":${countryID}}}]}`,
           body: `{"records":[{"fields":{"ID":${forDetailedCountryID}}}]}`,
         }
       );
@@ -206,7 +201,6 @@ export default function Comparator({ countryData }) {
       await timeout(500);
       const response = await fetch(
         `https://api.airtable.com/v0/appPxDTuHp9EnOa32/${APIUser}/`,
-        // `https://api.airtable.com/v0/appPxDTuHp9EnOa32/covid_fav_table/`,
         {
           headers: {
             Authorization: `Bearer ${APIKey}`,

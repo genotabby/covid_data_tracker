@@ -67,7 +67,7 @@ export default function Home({ props }) {
       <p>
         Coronavirus Cases:{" "}
         {props.global.length === 0
-          ? "The virus is hindering our systems, causing at some points an overwhelming delay"
+          ? "Loading..."
           : addCommas(props?.global?.summaryStats?.global?.confirmed)}
       </p>
       <p>
