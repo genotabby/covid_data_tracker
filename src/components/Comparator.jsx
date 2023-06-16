@@ -19,13 +19,13 @@ export default function Comparator({ countryData }) {
   const handleUsernameChange = (event) => {
     setLoginUsername(event.target.value);
     setAPIUser(event.target.value);
-    // This works but is probably wrong because this is updating the state once then twice later
+    // This is updating the state once then twice later
     console.log("handleUsernameChange", event.target.value);
   };
 
   const handleChange = (event) => {
     setLoginKey(event.target.value);
-    // This works but is probably wrong because this is updating the state once then twice later
+    // This is updating the state once then twice later
     setAPIKey(event.target.value);
     console.log("changeApikey", APIKey);
     console.log("handleChange", event.target.value);
@@ -312,11 +312,11 @@ export default function Comparator({ countryData }) {
         </select>
         <button>Detailed info with map</button>
         <button onClick={handleFav}>Add to compare</button>
-        <br />
       </form>
+      <br />
 
       <table border="1">
-        <caption>Personal List</caption>
+        {/* <caption>Personal List</caption> */}
         <thead>
           <tr>
             <th className="fav_th">Country</th>

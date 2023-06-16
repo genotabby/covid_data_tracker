@@ -11,7 +11,6 @@ import {
 const axisStyle = {
   tickLabels: {
     fontSize: 8,
-    // angle: 45,
   },
   axisLabel: {
     padding: 39,
@@ -38,7 +37,6 @@ export default function Home({ props }) {
       dataResult.push({
         country: i + 1,
         cases: countryDataToSort[i]?.casesPerOneMillion,
-        // cases: props?.country[i]?.casesPerOneMillion,
       });
     }
     console.log("dataResult", dataResult);
@@ -48,7 +46,6 @@ export default function Home({ props }) {
   const renderTickFormat = () => {
     const result = [];
     for (let i = 0; i < topXvalue; i++) {
-      //   result.push(countryDataToSort[i]?.countryInfo?.iso3);
       result.push(countryDataToSort[i]?.country);
     }
     console.log(result);
@@ -59,7 +56,6 @@ export default function Home({ props }) {
     let result = [];
     for (let i = 0; i < topXvalue; i++) {
       result.push(i + 1);
-      //   result++;
     }
     console.log("result", result);
     return result;
@@ -91,10 +87,10 @@ export default function Home({ props }) {
         theme={VictoryTheme.material}
         domainPadding={10}
         height={200}
-        width={300}
+        width={250}
       >
         <VictoryLabel
-          x={150}
+          x={120}
           y={25}
           textAnchor="middle"
           text="Top 10 by Cases per million"
@@ -113,7 +109,6 @@ export default function Home({ props }) {
           //   style={axisStyle}
           style={{
             tickLabels: { angle: 45, padding: 10, fontSize: 8 },
-            // fontSize: 100,
           }}
         />
         <VictoryAxis
@@ -122,11 +117,8 @@ export default function Home({ props }) {
           label="Total # of Cases per million"
           style={axisStyle}
           tickFormat={(x) => `${x / 1000}k`}
-          //   tickLabelComponent={<VictoryLabel dy={20} />}
         />
-        {/* <VictoryBar data={countryDataToSort()} x="country" y="cases" /> */}
         <VictoryBar data={data()} x="country" y="cases" />
-        {/* <VictoryBar data={data} x="country" y="cases" /> */}
       </VictoryChart>
     </>
   );
