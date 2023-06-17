@@ -1,6 +1,6 @@
 # Developing a covid data comparator using react
 
-##MVP
+## MVP
 To create a platform where you can see and compare the latest data between countries
 
 
