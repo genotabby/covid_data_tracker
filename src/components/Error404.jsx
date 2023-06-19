@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 export default function Error404() {
   return (
     <>
-      {/* <h1>Error404</h1> */}
-
       <div className="container">
         <div className="row">
           <div className="col-sm-12 ">
