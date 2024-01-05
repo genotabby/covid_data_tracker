@@ -13,7 +13,7 @@ export default function About() {
           countries.{" "}
         </p>
         <p>
-          As this is dependant on an API, it is scalable as long as there is an
+          As this is dependant on an API, it is scalable and can be ported as long as there is an
           available API! 😄
         </p>
       </div>
